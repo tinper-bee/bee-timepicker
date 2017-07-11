@@ -31,13 +31,13 @@ ReactDOM.render(
 #### 样式引入
 - 可以使用link引入build目录下TimePicker.css
 ```
-<link rel="stylesheet" href="./node_modules/bee-datepicker/build/TimePicker.css">
+<link rel="stylesheet" href="./node_modules/bee-timepicker/build/Timepicker.css">
 ```
 - 可以在js中import样式
 ```js
-import "./node_modules/bee-button/src/TimePicker.scss"
+import "./node_modules/bee-timepicker/src/Timepicker.scss"
 //或是
-import "./node_modules/bee-button/build/TimePicker.css"
+import "./node_modules/bee-timepicker/build/Timepicker.css"
 ```
 
 
