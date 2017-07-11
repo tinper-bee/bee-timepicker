@@ -4,7 +4,7 @@ import { Panel } from 'bee-panel';
 import Button from 'bee-button';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import TimePicker from '../src';
+import Timepicker from '../src';
 import moment from 'moment';
 
 

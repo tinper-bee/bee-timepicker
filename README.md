@@ -23,7 +23,7 @@ npm install --save bee-timepicker
 ```
 组件调用
 ```js
-import DatePicker from 'bee-timepicker';
+import Timepicker from 'bee-timepicker';
 ReactDOM.render(
         <TimePicker></TimePicker>
         , document.getElementById('target'));

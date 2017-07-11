@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _TimePicker = require('./TimePicker');
+var _Timepicker = require('./Timepicker');
 
-var _TimePicker2 = _interopRequireDefault(_TimePicker);
+var _Timepicker2 = _interopRequireDefault(_Timepicker);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-exports["default"] = _TimePicker2["default"];
+exports["default"] = _Timepicker2["default"];
 module.exports = exports['default'];

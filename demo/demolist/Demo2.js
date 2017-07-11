@@ -1,7 +1,7 @@
 /**
  *
  * @title 12小时制时间选择
- * @description 点击 TimePicker，然后可以在浮层中选择或者输入某一时间。
+ * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。
  *
  */
 
@@ -16,7 +16,7 @@ class Demo2 extends Component {
         const now = moment().hour(0).minute(0);
         return (
             <div>
-                <TimePicker
+                <Timepicker
                     format={format}
                     showSecond={false}
                     defaultValue={now}
