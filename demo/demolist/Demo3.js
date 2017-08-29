@@ -5,6 +5,10 @@
  *
  */
 
+import React, { Component } from 'react';
+import Timepicker from '../../src';
+import moment from 'moment';
+
 const showSecond = true;
 const str = showSecond ? 'HH:mm:ss' : 'HH:mm';
 
@@ -61,3 +65,5 @@ class Demo3 extends Component {
         )
     }
 }
+
+export default Demo3;

@@ -5,6 +5,10 @@
  *
  */
 
+import React, { Component } from 'react';
+import Timepicker from '../../src';
+import moment from 'moment';
+
 
 class Demo2 extends Component {
 
@@ -28,3 +32,5 @@ class Demo2 extends Component {
         )
     }
 }
+
+export default Demo2;

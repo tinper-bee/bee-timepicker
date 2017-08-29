@@ -4,6 +4,13 @@
  * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。
  *
  */
+
+
+
+import React, { Component } from 'react';
+import Timepicker from '../../src';
+import moment from 'moment';
+
 class Demo1 extends Component {
 
     onChange(time,timeString){
@@ -17,3 +24,6 @@ class Demo1 extends Component {
         )
     }
 }
+
+
+export default Demo1;
