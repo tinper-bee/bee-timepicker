@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import TimePicker from 'rc-time-picker';
+import PropTypes from 'prop-types';
+
 const propTypes = {};
 const defaultProps = {};
 class Timepicker extends Component {
