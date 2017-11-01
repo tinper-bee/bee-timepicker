@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import TimePicker from 'rc-time-picker';
 import PropTypes from 'prop-types';
 
@@ -8,7 +7,7 @@ const defaultProps = {};
 class Timepicker extends Component {
 
     render() {
-        var props = this.props;
+        let props = this.props;
         return (
             <TimePicker {...props} />
         )
