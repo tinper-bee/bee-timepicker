@@ -11817,6 +11817,7 @@
 	      _config$autoDestroy = config.autoDestroy,
 	      autoDestroy = _config$autoDestroy === undefined ? true : _config$autoDestroy,
 	      isVisible = config.isVisible,
+	      isForceRender = config.isForceRender,
 	      getComponent = config.getComponent,
 	      _config$getContainer = config.getContainer,
 	      getContainer = _config$getContainer === undefined ? defaultGetContainer : _config$getContainer;
@@ -11825,7 +11826,7 @@
 	  var mixin = void 0;
 	
 	  function _renderComponent(instance, componentArg, ready) {
-	    if (!isVisible || instance._component || isVisible(instance)) {
+	    if (!isVisible || instance._component || isVisible(instance) || isForceRender && isForceRender(instance)) {
 	      if (!instance._container) {
 	        instance._container = getContainer(instance);
 	      }
@@ -12365,7 +12366,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var require;/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
-	//! version : 2.19.1
+	//! version : 2.19.2
 	//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 	//! license : MIT
 	//! momentjs.com
@@ -13180,7 +13181,7 @@
 	
 	function set$1 (mom, unit, value) {
 	    if (mom.isValid() && !isNaN(value)) {
-	        if (unit === 'FullYear' && isLeapYear(mom.year())) {
+	        if (unit === 'FullYear' && isLeapYear(mom.year()) && mom.month() === 1 && mom.date() === 29) {
 	            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value, mom.month(), daysInMonth(value, mom.month()));
 	        }
 	        else {
@@ -14286,10 +14287,11 @@
 	
 	function updateLocale(name, config) {
 	    if (config != null) {
-	        var locale, parentConfig = baseConfig;
+	        var locale, tmpLocale, parentConfig = baseConfig;
 	        // MERGE
-	        if (locales[name] != null) {
-	            parentConfig = locales[name]._config;
+	        tmpLocale = loadLocale(name);
+	        if (tmpLocale != null) {
+	            parentConfig = tmpLocale._config;
 	        }
 	        config = mergeConfigs(parentConfig, config);
 	        locale = new Locale(config);
@@ -16843,7 +16845,7 @@
 	// Side effect imports
 	
 	
-	hooks.version = '2.19.1';
+	hooks.version = '2.19.2';
 	
 	setHookCallback(createLocal);
 	
