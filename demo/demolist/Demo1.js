@@ -8,7 +8,7 @@
 
 
 import React, { Component } from 'react';
-import Timepicker from '../../src';
+import Timepicker from '../../src/index';
 import moment from 'moment';
 
 class Demo1 extends Component {
