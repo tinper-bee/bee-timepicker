@@ -9,7 +9,7 @@ class Timepicker extends Component {
     render() {
         let props = this.props;
         return (
-            <TimePicker {...props} />
+            <TimePicker prefixCls='u-time-picker' {...props} />
         )
     }
 };

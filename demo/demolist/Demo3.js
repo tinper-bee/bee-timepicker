@@ -55,7 +55,6 @@ class Demo3 extends Component {
                 <Timepicker
                     showSecond={showSecond}
                     defaultValue={now}
-                    className="xxx"
                     onChange={this.onChange.bind(this)}
                     disabledHours={this.disabledHours}
                     disabledMinutes={this.disabledMinutes.bind(this)}
