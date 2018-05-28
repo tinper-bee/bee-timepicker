@@ -16,10 +16,13 @@ class Demo1 extends Component {
     onChange(time,timeString){
         console.log(time, timeString);
     }
+    getPopupContainer() {
+        return this.d || document.getElementById('d');
+    }
     render() {
         return (
-            <div>
-                <Timepicker placeholder="选择时间" onChange={this.onChange.bind(this)} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />
+            <div id={"d"}>
+                <Timepicker getPopupContainer={this.getPopupContainer} placeholder="选择时间" onChange={this.onChange.bind(this)} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />
             </div>
         )
     }

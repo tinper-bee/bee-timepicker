@@ -30,3 +30,4 @@
 |name|设置input的name属性|String|-|
 |onOpen|打开时的回调|Function({ open })|-|
 |onClose|关闭时的回调|Function({ open })|-|
+|getPopupContainer|定义浮层的容器，默认为 body 上新建 div|Function|-|

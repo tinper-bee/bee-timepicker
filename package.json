@@ -35,7 +35,7 @@
   "dependencies": {
     "tinper-bee-core": "latest",
     "babel-runtime": "^6.23.0",
-    "rc-time-picker": "^2.4.1"
+    "rc-time-picker": "^3.1.0"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0",
