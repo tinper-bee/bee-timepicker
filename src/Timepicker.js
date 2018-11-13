@@ -3,7 +3,9 @@ import TimePicker from 'rc-time-picker';
 import PropTypes from 'prop-types';
 
 const propTypes = {};
-const defaultProps = {};
+const defaultProps = {
+    focusOnOpen:true
+};
 class Timepicker extends Component {
 
     render() {
