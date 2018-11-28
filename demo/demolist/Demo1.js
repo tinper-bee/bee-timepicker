@@ -13,8 +13,8 @@ import moment from 'moment';
 
 class Demo1 extends Component {
 
-    onChange(time,timeString){
-        console.log(time, timeString);
+    onChange(time){
+        console.log(time);
     }
     getPopupContainer() {
         return this.d || document.getElementById('d');
@@ -22,7 +22,7 @@ class Demo1 extends Component {
     render() {
         return (
             <div id={"d"}>
-                <Timepicker getPopupContainer={this.getPopupContainer} placeholder="选择时间" onChange={this.onChange.bind(this)} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />
+                <Timepicker getPopupContainer={this.getPopupContainer} placeholder="选择时间" onChange={this.onChange.bind(this)} />
             </div>
         )
     }

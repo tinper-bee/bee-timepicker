@@ -10,9 +10,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _rcTimePicker = require('rc-time-picker');
+var _index = require('./rc/index');
 
-var _rcTimePicker2 = _interopRequireDefault(_rcTimePicker);
+var _index2 = _interopRequireDefault(_index);
 
 var _propTypes = require('prop-types');
 
@@ -44,7 +44,7 @@ var Timepicker = function (_Component) {
 
     Timepicker.prototype.render = function render() {
         var props = this.props;
-        return _react2["default"].createElement(_rcTimePicker2["default"], _extends({ prefixCls: 'u-time-picker' }, props));
+        return _react2["default"].createElement(_index2["default"], _extends({ prefixCls: 'u-time-picker' }, props));
     };
 
     return Timepicker;

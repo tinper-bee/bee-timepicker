@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TimePicker from 'rc-time-picker';
+import TimePicker from './rc/index';
 import PropTypes from 'prop-types';
 
 const propTypes = {};
