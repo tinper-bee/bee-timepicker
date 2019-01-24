@@ -135,11 +135,11 @@
     user-select: none;
   }
   .u-time-picker-panel-select li:hover {
-    background: #edfaff;
+    background: unquote("rgb(#{$primary-color,0.1})");
   }
   li.u-time-picker-panel-select-option-selected {
-    background: #edfaff;
-    color: #2db7f5;
+    background: unquote("rgb(#{$primary-color,0.1})");
+    color: $brand-primary;
   }
   li.u-time-picker-panel-select-option-disabled {
     color: #bfbfbf;

@@ -116,10 +116,10 @@
     -ms-user-select: none;
     user-select: none; }
   .u-time-picker-panel .u-time-picker-panel-select li:hover {
-    background: #edfaff; }
+    background: rgb(30,136,229, 0.1); }
   .u-time-picker-panel li.u-time-picker-panel-select-option-selected {
-    background: #edfaff;
-    color: #2db7f5; }
+    background: rgb(30,136,229, 0.1);
+    color: rgb(30,136,229); }
   .u-time-picker-panel li.u-time-picker-panel-select-option-disabled {
     color: #bfbfbf; }
   .u-time-picker-panel li.u-time-picker-panel-select-option-disabled:hover {

@@ -76,7 +76,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(84);var Demo2 = __webpack_require__(326);var Demo3 = __webpack_require__(327);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 基本时间选择", "code": "/**\n *\n * @title 基本时间选择\n * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。\n *\n */\n\n\n\nimport React, { Component } from 'react';\nimport Timepicker from \"tinper-bee/lib/Timepicker\";\nimport moment from 'moment';\n\nclass Demo1 extends Component {\n\n    onChange(time){\n        console.log(time);\n    }\n    getPopupContainer() {\n        return this.d || document.getElementById('d');\n    }\n    render() {\n        return (\n            <div id={\"d\"}>\n                <Timepicker getPopupContainer={this.getPopupContainer} placeholder=\"选择时间\" onChange={this.onChange.bind(this)} />\n            </div>\n        )\n    }\n}\n\n\n", "desc": " 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 12小时制时间选择", "code": "/**\n *\n * @title 12小时制时间选择\n * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。\n *\n */\n\nimport React, { Component } from 'react';\nimport Timepicker from \"tinper-bee/lib/Timepicker\";\nimport moment from 'moment';\n\n\nclass Demo2 extends Component {\n\n    onChange(time,timeString){\n        console.log(time, timeString);\n    }\n    render() {\n        const format = 'h:mm a';\n        const now = moment().hour(0).minute(0);\n        return (\n            <div>\n                <Timepicker\n                    format={format}\n                    showSecond={false}\n                    defaultValue={now}\n                    placeholder=\"选择时间\"\n                    onChange={this.onChange.bind(this)}\n                    use12Hours\n                />\n            </div>\n        )\n    }\n}\n\n", "desc": " 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 限定时间", "code": "/**\n *\n * @title 限定时间\n * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。\n *\n */\n\nimport React, { Component } from 'react';\nimport Timepicker from \"tinper-bee/lib/Timepicker\";\nimport moment from 'moment';\n\nconst showSecond = true;\nconst str = showSecond ? 'HH:mm:ss' : 'HH:mm';\n\nclass Demo3 extends Component {\n\n    onChange(value) {\n        console.log(value && value.format(str));\n    }\n\n    generateOptions(length, excludedOptions) {\n        const arr = [];\n        for (let value = 0; value < length; value++) {\n            if (excludedOptions.indexOf(value) < 0) {\n                arr.push(value);\n            }\n        }\n        return arr;\n    }\n\n    disabledHours() {\n        return [0, 1, 2, 3, 4, 5, 6, 7, 8, 22, 23];\n    }\n\n    disabledMinutes(h) {\n        switch (h) {\n            case 9:\n                return this.generateOptions(60, [30]);\n            case 21:\n                return this.generateOptions(60, [0]);\n            default:\n                return this.generateOptions(60, [0, 30]);\n        }\n    }\n\n    disabledSeconds(h, m) {\n        return [h + m % 60];\n    }\n\n    render() {\n        const format = 'h:mm a';\n        const now = moment().hour(0).minute(0);\n        return (\n            <div>\n                <Timepicker\n                    showSecond={showSecond}\n                    defaultValue={now}\n                    onChange={this.onChange.bind(this)}\n                    disabledHours={this.disabledHours}\n                    disabledMinutes={this.disabledMinutes.bind(this)}\n                    disabledSeconds={this.disabledSeconds.bind(this)}\n                />\n            </div>\n        )\n    }\n}\n\n", "desc": " 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。" }];
+	var Demo1 = __webpack_require__(84);var Demo2 = __webpack_require__(330);var Demo3 = __webpack_require__(331);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 基本时间选择", "code": "/**\r\n *\r\n * @title 基本时间选择\r\n * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。\r\n *\r\n */\r\n\r\n\r\n\r\nimport React, { Component } from 'react';\r\nimport Timepicker from \"tinper-bee/lib/Timepicker\";\r\nimport moment from 'moment';\r\n\r\nclass Demo1 extends Component {\r\n\r\n    onChange(time){\r\n        console.log(time);\r\n    }\r\n    getPopupContainer() {\r\n        return this.d || document.getElementById('d');\r\n    }\r\n    render() {\r\n        return (\r\n            <div id={\"d\"}>\r\n                <Timepicker getPopupContainer={this.getPopupContainer} placeholder=\"选择时间\" onChange={this.onChange.bind(this)} />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\n", "desc": " 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 12小时制时间选择", "code": "/**\r\n *\r\n * @title 12小时制时间选择\r\n * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport Timepicker from \"tinper-bee/lib/Timepicker\";\r\nimport moment from 'moment';\r\n\r\n\r\nclass Demo2 extends Component {\r\n\r\n    onChange(time,timeString){\r\n        console.log(time, timeString);\r\n    }\r\n    render() {\r\n        const format = 'h:mm a';\r\n        const now = moment().hour(0).minute(0);\r\n        return (\r\n            <div>\r\n                <Timepicker\r\n                    format={format}\r\n                    showSecond={false}\r\n                    defaultValue={now}\r\n                    placeholder=\"选择时间\"\r\n                    onChange={this.onChange.bind(this)}\r\n                    use12Hours\r\n                />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 限定时间", "code": "/**\r\n *\r\n * @title 限定时间\r\n * @description 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\r\nimport Timepicker from \"tinper-bee/lib/Timepicker\";\r\nimport moment from 'moment';\r\n\r\nconst showSecond = true;\r\nconst str = showSecond ? 'HH:mm:ss' : 'HH:mm';\r\n\r\nclass Demo3 extends Component {\r\n\r\n    onChange(value) {\r\n        console.log(value && value.format(str));\r\n    }\r\n\r\n    generateOptions(length, excludedOptions) {\r\n        const arr = [];\r\n        for (let value = 0; value < length; value++) {\r\n            if (excludedOptions.indexOf(value) < 0) {\r\n                arr.push(value);\r\n            }\r\n        }\r\n        return arr;\r\n    }\r\n\r\n    disabledHours() {\r\n        return [0, 1, 2, 3, 4, 5, 6, 7, 8, 22, 23];\r\n    }\r\n\r\n    disabledMinutes(h) {\r\n        switch (h) {\r\n            case 9:\r\n                return this.generateOptions(60, [30]);\r\n            case 21:\r\n                return this.generateOptions(60, [0]);\r\n            default:\r\n                return this.generateOptions(60, [0, 30]);\r\n        }\r\n    }\r\n\r\n    disabledSeconds(h, m) {\r\n        return [h + m % 60];\r\n    }\r\n\r\n    render() {\r\n        const format = 'h:mm a';\r\n        const now = moment().hour(0).minute(0);\r\n        return (\r\n            <div>\r\n                <Timepicker\r\n                    showSecond={showSecond}\r\n                    defaultValue={now}\r\n                    onChange={this.onChange.bind(this)}\r\n                    disabledHours={this.disabledHours}\r\n                    disabledMinutes={this.disabledMinutes.bind(this)}\r\n                    disabledSeconds={this.disabledSeconds.bind(this)}\r\n                />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n", "desc": " 点击 Timepicker，然后可以在浮层中选择或者输入某一时间。" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -6166,7 +6166,7 @@
 	    });
 	}
 	
-	function notice(content, duration, type, onClose, position, style, keyboard, onEscapeKeyUp) {
+	function notice(content, duration, type, onClose, position, style, keyboard, onEscapeKeyUp, showIcon) {
 	    var iconType = {
 	        info: 'uf uf-i-c-2',
 	        success: 'uf uf-correct',
@@ -6192,11 +6192,11 @@
 	            content: _react2["default"].createElement(
 	                'div',
 	                null,
-	                _react2["default"].createElement(
+	                showIcon ? _react2["default"].createElement(
 	                    'div',
 	                    { className: clsPrefix + '-notice-description-icon' },
 	                    _react2["default"].createElement('i', { className: (0, _classnames2["default"])(iconType) })
-	                ),
+	                ) : null,
 	                _react2["default"].createElement(
 	                    'div',
 	                    { className: clsPrefix + '-notice-description-content' },
@@ -6224,7 +6224,8 @@
 	        var onClose = obj.onClose || noop;
 	        var position = obj.position || "top";
 	        var style = obj.style || {};
-	        return notice(content, duration, color, onClose, position, style, obj.keyboard, obj.onEscapeKeyUp);
+	        var showIcon = obj.showIcon || false;
+	        return notice(content, duration, color, onClose, position, style, obj.keyboard, obj.onEscapeKeyUp, showIcon);
 	    },
 	    config: function config(options) {
 	        if (options.top !== undefined) {
@@ -7814,7 +7815,7 @@
 	    /**
 	    * @title 类型
 	    */
-	    colors: _propTypes2["default"].oneOf(['primary', 'accent', 'success', 'info', 'warning', 'danger', 'default']),
+	    colors: _propTypes2["default"].oneOf(['primary', 'secondary', 'accent', 'success', 'info', 'warning', 'danger', 'dark', 'light', 'default']),
 	    /**
 	     * @title 是否禁用
 	     * @veIgnore
@@ -7849,11 +7850,14 @@
 	},
 	    colorsMap = {
 	    primary: 'primary',
+	    secondary: 'secondary',
 	    accent: 'accent',
 	    success: 'success',
 	    info: 'info',
 	    warning: 'warning',
-	    danger: 'danger'
+	    danger: 'danger',
+	    dark: 'dark',
+	    light: 'light'
 	},
 	    shapeMap = {
 	    block: 'block',
@@ -8123,7 +8127,7 @@
 	
 	var _Panel2 = _interopRequireDefault(_Panel);
 	
-	var _placements = __webpack_require__(325);
+	var _placements = __webpack_require__(329);
 	
 	var _placements2 = _interopRequireDefault(_placements);
 	
@@ -9421,7 +9425,7 @@
 /* 96 */
 /***/ (function(module, exports) {
 
-	var core = module.exports = { version: '2.5.7' };
+	var core = module.exports = { version: '2.6.3' };
 	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -9817,7 +9821,7 @@
 	})('versions', []).push({
 	  version: core.version,
 	  mode: __webpack_require__(123) ? 'pure' : 'global',
-	  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+	  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 	});
 
 
@@ -13196,7 +13200,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Combobox = __webpack_require__(323);
+	var _Combobox = __webpack_require__(327);
 	
 	var _Combobox2 = _interopRequireDefault(_Combobox);
 	
@@ -14855,22 +14859,36 @@
 	    function createDate (y, m, d, h, M, s, ms) {
 	        // can't just apply() to create a date:
 	        // https://stackoverflow.com/q/181348
-	        var date = new Date(y, m, d, h, M, s, ms);
-	
+	        var date;
 	        // the date constructor remaps years 0-99 to 1900-1999
-	        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
-	            date.setFullYear(y);
+	        if (y < 100 && y >= 0) {
+	            // preserve leap years using a full 400 year cycle, then reset
+	            date = new Date(y + 400, m, d, h, M, s, ms);
+	            if (isFinite(date.getFullYear())) {
+	                date.setFullYear(y);
+	            }
+	        } else {
+	            date = new Date(y, m, d, h, M, s, ms);
 	        }
+	
 	        return date;
 	    }
 	
 	    function createUTCDate (y) {
-	        var date = new Date(Date.UTC.apply(null, arguments));
-	
+	        var date;
 	        // the Date.UTC function remaps years 0-99 to 1900-1999
-	        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
-	            date.setUTCFullYear(y);
+	        if (y < 100 && y >= 0) {
+	            var args = Array.prototype.slice.call(arguments);
+	            // preserve leap years using a full 400 year cycle, then reset
+	            args[0] = y + 400;
+	            date = new Date(Date.UTC.apply(null, args));
+	            if (isFinite(date.getUTCFullYear())) {
+	                date.setUTCFullYear(y);
+	            }
+	        } else {
+	            date = new Date(Date.UTC.apply(null, arguments));
 	        }
+	
 	        return date;
 	    }
 	
@@ -14972,7 +14990,7 @@
 	
 	    var defaultLocaleWeek = {
 	        dow : 0, // Sunday is the first day of the week.
-	        doy : 6  // The week that contains Jan 1st is the first week of the year.
+	        doy : 6  // The week that contains Jan 6th is the first week of the year.
 	    };
 	
 	    function localeFirstDayOfWeek () {
@@ -15081,25 +15099,28 @@
 	    }
 	
 	    // LOCALES
+	    function shiftWeekdays (ws, n) {
+	        return ws.slice(n, 7).concat(ws.slice(0, n));
+	    }
 	
 	    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 	    function localeWeekdays (m, format) {
-	        if (!m) {
-	            return isArray(this._weekdays) ? this._weekdays :
-	                this._weekdays['standalone'];
-	        }
-	        return isArray(this._weekdays) ? this._weekdays[m.day()] :
-	            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+	        var weekdays = isArray(this._weekdays) ? this._weekdays :
+	            this._weekdays[(m && m !== true && this._weekdays.isFormat.test(format)) ? 'format' : 'standalone'];
+	        return (m === true) ? shiftWeekdays(weekdays, this._week.dow)
+	            : (m) ? weekdays[m.day()] : weekdays;
 	    }
 	
 	    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
 	    function localeWeekdaysShort (m) {
-	        return (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
+	        return (m === true) ? shiftWeekdays(this._weekdaysShort, this._week.dow)
+	            : (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
 	    }
 	
 	    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
 	    function localeWeekdaysMin (m) {
-	        return (m) ? this._weekdaysMin[m.day()] : this._weekdaysMin;
+	        return (m === true) ? shiftWeekdays(this._weekdaysMin, this._week.dow)
+	            : (m) ? this._weekdaysMin[m.day()] : this._weekdaysMin;
 	    }
 	
 	    function handleStrictParse$1(weekdayName, format, strict) {
@@ -15848,13 +15869,13 @@
 	                    weekdayOverflow = true;
 	                }
 	            } else if (w.e != null) {
-	                // local weekday -- counting starts from begining of week
+	                // local weekday -- counting starts from beginning of week
 	                weekday = w.e + dow;
 	                if (w.e < 0 || w.e > 6) {
 	                    weekdayOverflow = true;
 	                }
 	            } else {
-	                // default to begining of week
+	                // default to beginning of week
 	                weekday = dow;
 	            }
 	        }
@@ -16448,7 +16469,7 @@
 	            years = normalizedInput.year || 0,
 	            quarters = normalizedInput.quarter || 0,
 	            months = normalizedInput.month || 0,
-	            weeks = normalizedInput.week || 0,
+	            weeks = normalizedInput.week || normalizedInput.isoWeek || 0,
 	            days = normalizedInput.day || 0,
 	            hours = normalizedInput.hour || 0,
 	            minutes = normalizedInput.minute || 0,
@@ -16752,7 +16773,7 @@
 	                ms : toInt(absRound(match[MILLISECOND] * 1000)) * sign // the millisecond decimal point is included in the match
 	            };
 	        } else if (!!(match = isoRegex.exec(input))) {
-	            sign = (match[1] === '-') ? -1 : (match[1] === '+') ? 1 : 1;
+	            sign = (match[1] === '-') ? -1 : 1;
 	            duration = {
 	                y : parseIso(match[2], sign),
 	                M : parseIso(match[3], sign),
@@ -16794,7 +16815,7 @@
 	    }
 	
 	    function positiveMomentsDifference(base, other) {
-	        var res = {milliseconds: 0, months: 0};
+	        var res = {};
 	
 	        res.months = other.month() - base.month() +
 	            (other.year() - base.year()) * 12;
@@ -16903,7 +16924,7 @@
 	        if (!(this.isValid() && localInput.isValid())) {
 	            return false;
 	        }
-	        units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+	        units = normalizeUnits(units) || 'millisecond';
 	        if (units === 'millisecond') {
 	            return this.valueOf() > localInput.valueOf();
 	        } else {
@@ -16916,7 +16937,7 @@
 	        if (!(this.isValid() && localInput.isValid())) {
 	            return false;
 	        }
-	        units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+	        units = normalizeUnits(units) || 'millisecond';
 	        if (units === 'millisecond') {
 	            return this.valueOf() < localInput.valueOf();
 	        } else {
@@ -16925,9 +16946,14 @@
 	    }
 	
 	    function isBetween (from, to, units, inclusivity) {
+	        var localFrom = isMoment(from) ? from : createLocal(from),
+	            localTo = isMoment(to) ? to : createLocal(to);
+	        if (!(this.isValid() && localFrom.isValid() && localTo.isValid())) {
+	            return false;
+	        }
 	        inclusivity = inclusivity || '()';
-	        return (inclusivity[0] === '(' ? this.isAfter(from, units) : !this.isBefore(from, units)) &&
-	            (inclusivity[1] === ')' ? this.isBefore(to, units) : !this.isAfter(to, units));
+	        return (inclusivity[0] === '(' ? this.isAfter(localFrom, units) : !this.isBefore(localFrom, units)) &&
+	            (inclusivity[1] === ')' ? this.isBefore(localTo, units) : !this.isAfter(localTo, units));
 	    }
 	
 	    function isSame (input, units) {
@@ -16936,7 +16962,7 @@
 	        if (!(this.isValid() && localInput.isValid())) {
 	            return false;
 	        }
-	        units = normalizeUnits(units || 'millisecond');
+	        units = normalizeUnits(units) || 'millisecond';
 	        if (units === 'millisecond') {
 	            return this.valueOf() === localInput.valueOf();
 	        } else {
@@ -16946,11 +16972,11 @@
 	    }
 	
 	    function isSameOrAfter (input, units) {
-	        return this.isSame(input, units) || this.isAfter(input,units);
+	        return this.isSame(input, units) || this.isAfter(input, units);
 	    }
 	
 	    function isSameOrBefore (input, units) {
-	        return this.isSame(input, units) || this.isBefore(input,units);
+	        return this.isSame(input, units) || this.isBefore(input, units);
 	    }
 	
 	    function diff (input, units, asFloat) {
@@ -17127,62 +17153,130 @@
 	        return this._locale;
 	    }
 	
+	    var MS_PER_SECOND = 1000;
+	    var MS_PER_MINUTE = 60 * MS_PER_SECOND;
+	    var MS_PER_HOUR = 60 * MS_PER_MINUTE;
+	    var MS_PER_400_YEARS = (365 * 400 + 97) * 24 * MS_PER_HOUR;
+	
+	    // actual modulo - handles negative numbers (for dates before 1970):
+	    function mod$1(dividend, divisor) {
+	        return (dividend % divisor + divisor) % divisor;
+	    }
+	
+	    function localStartOfDate(y, m, d) {
+	        // the date constructor remaps years 0-99 to 1900-1999
+	        if (y < 100 && y >= 0) {
+	            // preserve leap years using a full 400 year cycle, then reset
+	            return new Date(y + 400, m, d) - MS_PER_400_YEARS;
+	        } else {
+	            return new Date(y, m, d).valueOf();
+	        }
+	    }
+	
+	    function utcStartOfDate(y, m, d) {
+	        // Date.UTC remaps years 0-99 to 1900-1999
+	        if (y < 100 && y >= 0) {
+	            // preserve leap years using a full 400 year cycle, then reset
+	            return Date.UTC(y + 400, m, d) - MS_PER_400_YEARS;
+	        } else {
+	            return Date.UTC(y, m, d);
+	        }
+	    }
+	
 	    function startOf (units) {
+	        var time;
 	        units = normalizeUnits(units);
-	        // the following switch intentionally omits break keywords
-	        // to utilize falling through the cases.
+	        if (units === undefined || units === 'millisecond' || !this.isValid()) {
+	            return this;
+	        }
+	
+	        var startOfDate = this._isUTC ? utcStartOfDate : localStartOfDate;
+	
 	        switch (units) {
 	            case 'year':
-	                this.month(0);
-	                /* falls through */
+	                time = startOfDate(this.year(), 0, 1);
+	                break;
 	            case 'quarter':
+	                time = startOfDate(this.year(), this.month() - this.month() % 3, 1);
+	                break;
 	            case 'month':
-	                this.date(1);
-	                /* falls through */
+	                time = startOfDate(this.year(), this.month(), 1);
+	                break;
 	            case 'week':
+	                time = startOfDate(this.year(), this.month(), this.date() - this.weekday());
+	                break;
 	            case 'isoWeek':
+	                time = startOfDate(this.year(), this.month(), this.date() - (this.isoWeekday() - 1));
+	                break;
 	            case 'day':
 	            case 'date':
-	                this.hours(0);
-	                /* falls through */
+	                time = startOfDate(this.year(), this.month(), this.date());
+	                break;
 	            case 'hour':
-	                this.minutes(0);
-	                /* falls through */
+	                time = this._d.valueOf();
+	                time -= mod$1(time + (this._isUTC ? 0 : this.utcOffset() * MS_PER_MINUTE), MS_PER_HOUR);
+	                break;
 	            case 'minute':
-	                this.seconds(0);
-	                /* falls through */
+	                time = this._d.valueOf();
+	                time -= mod$1(time, MS_PER_MINUTE);
+	                break;
 	            case 'second':
-	                this.milliseconds(0);
+	                time = this._d.valueOf();
+	                time -= mod$1(time, MS_PER_SECOND);
+	                break;
 	        }
 	
-	        // weeks are a special case
-	        if (units === 'week') {
-	            this.weekday(0);
-	        }
-	        if (units === 'isoWeek') {
-	            this.isoWeekday(1);
-	        }
-	
-	        // quarters are also special
-	        if (units === 'quarter') {
-	            this.month(Math.floor(this.month() / 3) * 3);
-	        }
-	
+	        this._d.setTime(time);
+	        hooks.updateOffset(this, true);
 	        return this;
 	    }
 	
 	    function endOf (units) {
+	        var time;
 	        units = normalizeUnits(units);
-	        if (units === undefined || units === 'millisecond') {
+	        if (units === undefined || units === 'millisecond' || !this.isValid()) {
 	            return this;
 	        }
 	
-	        // 'date' is an alias for 'day', so it should be considered as such.
-	        if (units === 'date') {
-	            units = 'day';
+	        var startOfDate = this._isUTC ? utcStartOfDate : localStartOfDate;
+	
+	        switch (units) {
+	            case 'year':
+	                time = startOfDate(this.year() + 1, 0, 1) - 1;
+	                break;
+	            case 'quarter':
+	                time = startOfDate(this.year(), this.month() - this.month() % 3 + 3, 1) - 1;
+	                break;
+	            case 'month':
+	                time = startOfDate(this.year(), this.month() + 1, 1) - 1;
+	                break;
+	            case 'week':
+	                time = startOfDate(this.year(), this.month(), this.date() - this.weekday() + 7) - 1;
+	                break;
+	            case 'isoWeek':
+	                time = startOfDate(this.year(), this.month(), this.date() - (this.isoWeekday() - 1) + 7) - 1;
+	                break;
+	            case 'day':
+	            case 'date':
+	                time = startOfDate(this.year(), this.month(), this.date() + 1) - 1;
+	                break;
+	            case 'hour':
+	                time = this._d.valueOf();
+	                time += MS_PER_HOUR - mod$1(time + (this._isUTC ? 0 : this.utcOffset() * MS_PER_MINUTE), MS_PER_HOUR) - 1;
+	                break;
+	            case 'minute':
+	                time = this._d.valueOf();
+	                time += MS_PER_MINUTE - mod$1(time, MS_PER_MINUTE) - 1;
+	                break;
+	            case 'second':
+	                time = this._d.valueOf();
+	                time += MS_PER_SECOND - mod$1(time, MS_PER_SECOND) - 1;
+	                break;
 	        }
 	
-	        return this.startOf(units).add(1, (units === 'isoWeek' ? 'week' : units)).subtract(1, 'ms');
+	        this._d.setTime(time);
+	        hooks.updateOffset(this, true);
+	        return this;
 	    }
 	
 	    function valueOf () {
@@ -17888,10 +17982,14 @@
 	
 	        units = normalizeUnits(units);
 	
-	        if (units === 'month' || units === 'year') {
-	            days   = this._days   + milliseconds / 864e5;
+	        if (units === 'month' || units === 'quarter' || units === 'year') {
+	            days = this._days + milliseconds / 864e5;
 	            months = this._months + daysToMonths(days);
-	            return units === 'month' ? months : months / 12;
+	            switch (units) {
+	                case 'month':   return months;
+	                case 'quarter': return months / 3;
+	                case 'year':    return months / 12;
+	            }
 	        } else {
 	            // handle milliseconds separately because of floating point math errors (issue #1867)
 	            days = this._days + Math.round(monthsToDays(this._months));
@@ -17934,6 +18032,7 @@
 	    var asDays         = makeAs('d');
 	    var asWeeks        = makeAs('w');
 	    var asMonths       = makeAs('M');
+	    var asQuarters     = makeAs('Q');
 	    var asYears        = makeAs('y');
 	
 	    function clone$1 () {
@@ -18125,6 +18224,7 @@
 	    proto$2.asDays         = asDays;
 	    proto$2.asWeeks        = asWeeks;
 	    proto$2.asMonths       = asMonths;
+	    proto$2.asQuarters     = asQuarters;
 	    proto$2.asYears        = asYears;
 	    proto$2.valueOf        = valueOf$1;
 	    proto$2._bubble        = bubble;
@@ -18169,7 +18269,7 @@
 	    // Side effect imports
 	
 	
-	    hooks.version = '2.22.2';
+	    hooks.version = '2.24.0';
 	
 	    setHookCallback(createLocal);
 	
@@ -18210,7 +18310,7 @@
 	        TIME: 'HH:mm',                                  // <input type="time" />
 	        TIME_SECONDS: 'HH:mm:ss',                       // <input type="time" step="1" />
 	        TIME_MS: 'HH:mm:ss.SSS',                        // <input type="time" step="0.001" />
-	        WEEK: 'YYYY-[W]WW',                             // <input type="week" />
+	        WEEK: 'GGGG-[W]WW',                             // <input type="week" />
 	        MONTH: 'YYYY-MM'                                // <input type="month" />
 	    };
 	
@@ -18293,200 +18393,208 @@
 		"./dv.js": 224,
 		"./el": 225,
 		"./el.js": 225,
-		"./en-au": 226,
-		"./en-au.js": 226,
-		"./en-ca": 227,
-		"./en-ca.js": 227,
-		"./en-gb": 228,
-		"./en-gb.js": 228,
-		"./en-ie": 229,
-		"./en-ie.js": 229,
-		"./en-il": 230,
-		"./en-il.js": 230,
-		"./en-nz": 231,
-		"./en-nz.js": 231,
-		"./eo": 232,
-		"./eo.js": 232,
-		"./es": 233,
-		"./es-do": 234,
-		"./es-do.js": 234,
-		"./es-us": 235,
-		"./es-us.js": 235,
-		"./es.js": 233,
-		"./et": 236,
-		"./et.js": 236,
-		"./eu": 237,
-		"./eu.js": 237,
-		"./fa": 238,
-		"./fa.js": 238,
-		"./fi": 239,
-		"./fi.js": 239,
-		"./fo": 240,
-		"./fo.js": 240,
-		"./fr": 241,
-		"./fr-ca": 242,
-		"./fr-ca.js": 242,
-		"./fr-ch": 243,
-		"./fr-ch.js": 243,
-		"./fr.js": 241,
-		"./fy": 244,
-		"./fy.js": 244,
-		"./gd": 245,
-		"./gd.js": 245,
-		"./gl": 246,
-		"./gl.js": 246,
-		"./gom-latn": 247,
-		"./gom-latn.js": 247,
-		"./gu": 248,
-		"./gu.js": 248,
-		"./he": 249,
-		"./he.js": 249,
-		"./hi": 250,
-		"./hi.js": 250,
-		"./hr": 251,
-		"./hr.js": 251,
-		"./hu": 252,
-		"./hu.js": 252,
-		"./hy-am": 253,
-		"./hy-am.js": 253,
-		"./id": 254,
-		"./id.js": 254,
-		"./is": 255,
-		"./is.js": 255,
-		"./it": 256,
-		"./it.js": 256,
-		"./ja": 257,
-		"./ja.js": 257,
-		"./jv": 258,
-		"./jv.js": 258,
-		"./ka": 259,
-		"./ka.js": 259,
-		"./kk": 260,
-		"./kk.js": 260,
-		"./km": 261,
-		"./km.js": 261,
-		"./kn": 262,
-		"./kn.js": 262,
-		"./ko": 263,
-		"./ko.js": 263,
-		"./ky": 264,
-		"./ky.js": 264,
-		"./lb": 265,
-		"./lb.js": 265,
-		"./lo": 266,
-		"./lo.js": 266,
-		"./lt": 267,
-		"./lt.js": 267,
-		"./lv": 268,
-		"./lv.js": 268,
-		"./me": 269,
-		"./me.js": 269,
-		"./mi": 270,
-		"./mi.js": 270,
-		"./mk": 271,
-		"./mk.js": 271,
-		"./ml": 272,
-		"./ml.js": 272,
-		"./mn": 273,
-		"./mn.js": 273,
-		"./mr": 274,
-		"./mr.js": 274,
-		"./ms": 275,
-		"./ms-my": 276,
-		"./ms-my.js": 276,
-		"./ms.js": 275,
-		"./mt": 277,
-		"./mt.js": 277,
-		"./my": 278,
-		"./my.js": 278,
-		"./nb": 279,
-		"./nb.js": 279,
-		"./ne": 280,
-		"./ne.js": 280,
-		"./nl": 281,
-		"./nl-be": 282,
-		"./nl-be.js": 282,
-		"./nl.js": 281,
-		"./nn": 283,
-		"./nn.js": 283,
-		"./pa-in": 284,
-		"./pa-in.js": 284,
-		"./pl": 285,
-		"./pl.js": 285,
-		"./pt": 286,
-		"./pt-br": 287,
-		"./pt-br.js": 287,
-		"./pt.js": 286,
-		"./ro": 288,
-		"./ro.js": 288,
-		"./ru": 289,
-		"./ru.js": 289,
-		"./sd": 290,
-		"./sd.js": 290,
-		"./se": 291,
-		"./se.js": 291,
-		"./si": 292,
-		"./si.js": 292,
-		"./sk": 293,
-		"./sk.js": 293,
-		"./sl": 294,
-		"./sl.js": 294,
-		"./sq": 295,
-		"./sq.js": 295,
-		"./sr": 296,
-		"./sr-cyrl": 297,
-		"./sr-cyrl.js": 297,
-		"./sr.js": 296,
-		"./ss": 298,
-		"./ss.js": 298,
-		"./sv": 299,
-		"./sv.js": 299,
-		"./sw": 300,
-		"./sw.js": 300,
-		"./ta": 301,
-		"./ta.js": 301,
-		"./te": 302,
-		"./te.js": 302,
-		"./tet": 303,
-		"./tet.js": 303,
-		"./tg": 304,
-		"./tg.js": 304,
-		"./th": 305,
-		"./th.js": 305,
-		"./tl-ph": 306,
-		"./tl-ph.js": 306,
-		"./tlh": 307,
-		"./tlh.js": 307,
-		"./tr": 308,
-		"./tr.js": 308,
-		"./tzl": 309,
-		"./tzl.js": 309,
-		"./tzm": 310,
-		"./tzm-latn": 311,
-		"./tzm-latn.js": 311,
-		"./tzm.js": 310,
-		"./ug-cn": 312,
-		"./ug-cn.js": 312,
-		"./uk": 313,
-		"./uk.js": 313,
-		"./ur": 314,
-		"./ur.js": 314,
-		"./uz": 315,
-		"./uz-latn": 316,
-		"./uz-latn.js": 316,
-		"./uz.js": 315,
-		"./vi": 317,
-		"./vi.js": 317,
-		"./x-pseudo": 318,
-		"./x-pseudo.js": 318,
-		"./yo": 319,
-		"./yo.js": 319,
-		"./zh-cn": 320,
-		"./zh-cn.js": 320,
-		"./zh-hk": 321,
-		"./zh-hk.js": 321,
-		"./zh-tw": 322,
-		"./zh-tw.js": 322
+		"./en-SG": 226,
+		"./en-SG.js": 226,
+		"./en-au": 227,
+		"./en-au.js": 227,
+		"./en-ca": 228,
+		"./en-ca.js": 228,
+		"./en-gb": 229,
+		"./en-gb.js": 229,
+		"./en-ie": 230,
+		"./en-ie.js": 230,
+		"./en-il": 231,
+		"./en-il.js": 231,
+		"./en-nz": 232,
+		"./en-nz.js": 232,
+		"./eo": 233,
+		"./eo.js": 233,
+		"./es": 234,
+		"./es-do": 235,
+		"./es-do.js": 235,
+		"./es-us": 236,
+		"./es-us.js": 236,
+		"./es.js": 234,
+		"./et": 237,
+		"./et.js": 237,
+		"./eu": 238,
+		"./eu.js": 238,
+		"./fa": 239,
+		"./fa.js": 239,
+		"./fi": 240,
+		"./fi.js": 240,
+		"./fo": 241,
+		"./fo.js": 241,
+		"./fr": 242,
+		"./fr-ca": 243,
+		"./fr-ca.js": 243,
+		"./fr-ch": 244,
+		"./fr-ch.js": 244,
+		"./fr.js": 242,
+		"./fy": 245,
+		"./fy.js": 245,
+		"./ga": 246,
+		"./ga.js": 246,
+		"./gd": 247,
+		"./gd.js": 247,
+		"./gl": 248,
+		"./gl.js": 248,
+		"./gom-latn": 249,
+		"./gom-latn.js": 249,
+		"./gu": 250,
+		"./gu.js": 250,
+		"./he": 251,
+		"./he.js": 251,
+		"./hi": 252,
+		"./hi.js": 252,
+		"./hr": 253,
+		"./hr.js": 253,
+		"./hu": 254,
+		"./hu.js": 254,
+		"./hy-am": 255,
+		"./hy-am.js": 255,
+		"./id": 256,
+		"./id.js": 256,
+		"./is": 257,
+		"./is.js": 257,
+		"./it": 258,
+		"./it-ch": 259,
+		"./it-ch.js": 259,
+		"./it.js": 258,
+		"./ja": 260,
+		"./ja.js": 260,
+		"./jv": 261,
+		"./jv.js": 261,
+		"./ka": 262,
+		"./ka.js": 262,
+		"./kk": 263,
+		"./kk.js": 263,
+		"./km": 264,
+		"./km.js": 264,
+		"./kn": 265,
+		"./kn.js": 265,
+		"./ko": 266,
+		"./ko.js": 266,
+		"./ku": 267,
+		"./ku.js": 267,
+		"./ky": 268,
+		"./ky.js": 268,
+		"./lb": 269,
+		"./lb.js": 269,
+		"./lo": 270,
+		"./lo.js": 270,
+		"./lt": 271,
+		"./lt.js": 271,
+		"./lv": 272,
+		"./lv.js": 272,
+		"./me": 273,
+		"./me.js": 273,
+		"./mi": 274,
+		"./mi.js": 274,
+		"./mk": 275,
+		"./mk.js": 275,
+		"./ml": 276,
+		"./ml.js": 276,
+		"./mn": 277,
+		"./mn.js": 277,
+		"./mr": 278,
+		"./mr.js": 278,
+		"./ms": 279,
+		"./ms-my": 280,
+		"./ms-my.js": 280,
+		"./ms.js": 279,
+		"./mt": 281,
+		"./mt.js": 281,
+		"./my": 282,
+		"./my.js": 282,
+		"./nb": 283,
+		"./nb.js": 283,
+		"./ne": 284,
+		"./ne.js": 284,
+		"./nl": 285,
+		"./nl-be": 286,
+		"./nl-be.js": 286,
+		"./nl.js": 285,
+		"./nn": 287,
+		"./nn.js": 287,
+		"./pa-in": 288,
+		"./pa-in.js": 288,
+		"./pl": 289,
+		"./pl.js": 289,
+		"./pt": 290,
+		"./pt-br": 291,
+		"./pt-br.js": 291,
+		"./pt.js": 290,
+		"./ro": 292,
+		"./ro.js": 292,
+		"./ru": 293,
+		"./ru.js": 293,
+		"./sd": 294,
+		"./sd.js": 294,
+		"./se": 295,
+		"./se.js": 295,
+		"./si": 296,
+		"./si.js": 296,
+		"./sk": 297,
+		"./sk.js": 297,
+		"./sl": 298,
+		"./sl.js": 298,
+		"./sq": 299,
+		"./sq.js": 299,
+		"./sr": 300,
+		"./sr-cyrl": 301,
+		"./sr-cyrl.js": 301,
+		"./sr.js": 300,
+		"./ss": 302,
+		"./ss.js": 302,
+		"./sv": 303,
+		"./sv.js": 303,
+		"./sw": 304,
+		"./sw.js": 304,
+		"./ta": 305,
+		"./ta.js": 305,
+		"./te": 306,
+		"./te.js": 306,
+		"./tet": 307,
+		"./tet.js": 307,
+		"./tg": 308,
+		"./tg.js": 308,
+		"./th": 309,
+		"./th.js": 309,
+		"./tl-ph": 310,
+		"./tl-ph.js": 310,
+		"./tlh": 311,
+		"./tlh.js": 311,
+		"./tr": 312,
+		"./tr.js": 312,
+		"./tzl": 313,
+		"./tzl.js": 313,
+		"./tzm": 314,
+		"./tzm-latn": 315,
+		"./tzm-latn.js": 315,
+		"./tzm.js": 314,
+		"./ug-cn": 316,
+		"./ug-cn.js": 316,
+		"./uk": 317,
+		"./uk.js": 317,
+		"./ur": 318,
+		"./ur.js": 318,
+		"./uz": 319,
+		"./uz-latn": 320,
+		"./uz-latn.js": 320,
+		"./uz.js": 319,
+		"./vi": 321,
+		"./vi.js": 321,
+		"./x-pseudo": 322,
+		"./x-pseudo.js": 322,
+		"./yo": 323,
+		"./yo.js": 323,
+		"./zh-cn": 324,
+		"./zh-cn.js": 324,
+		"./zh-hk": 325,
+		"./zh-hk.js": 325,
+		"./zh-tw": 326,
+		"./zh-tw.js": 326
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -18709,7 +18817,7 @@
 	        },
 	        week : {
 	            dow : 6, // Saturday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -18772,7 +18880,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 4  // The week that contains Jan 1st is the first week of the year.
+	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
 	
@@ -18835,7 +18943,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -18961,7 +19069,7 @@
 	        },
 	        week : {
 	            dow : 6, // Saturday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -19024,7 +19132,7 @@
 	        },
 	        week : {
 	            dow : 6, // Saturday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -19132,7 +19240,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -19304,7 +19412,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -19440,7 +19548,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -19534,7 +19642,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -19719,7 +19827,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -19842,7 +19950,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -20109,7 +20217,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -20225,6 +20333,12 @@
 	
 	    var months = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split('_'),
 	        monthsShort = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_');
+	
+	    var monthsParse = [/^led/i, /^úno/i, /^bře/i, /^dub/i, /^kvě/i, /^(čvn|červen$|června)/i, /^(čvc|červenec|července)/i, /^srp/i, /^zář/i, /^říj/i, /^lis/i, /^pro/i];
+	    // NOTE: 'červen' is substring of 'červenec'; therefore 'červenec' must precede 'červen' in the regex to be fully matched.
+	    // Otherwise parser matches '1. červenec' as '1. červen' + 'ec'.
+	    var monthsRegex = /^(leden|únor|březen|duben|květen|červenec|července|červen|června|srpen|září|říjen|listopad|prosinec|led|úno|bře|dub|kvě|čvn|čvc|srp|zář|říj|lis|pro)/i;
+	
 	    function plural(n) {
 	        return (n > 1) && (n < 5) && (~~(n / 10) !== 1);
 	    }
@@ -20291,28 +20405,15 @@
 	    var cs = moment.defineLocale('cs', {
 	        months : months,
 	        monthsShort : monthsShort,
-	        monthsParse : (function (months, monthsShort) {
-	            var i, _monthsParse = [];
-	            for (i = 0; i < 12; i++) {
-	                // use custom parser to solve problem with July (červenec)
-	                _monthsParse[i] = new RegExp('^' + months[i] + '$|^' + monthsShort[i] + '$', 'i');
-	            }
-	            return _monthsParse;
-	        }(months, monthsShort)),
-	        shortMonthsParse : (function (monthsShort) {
-	            var i, _shortMonthsParse = [];
-	            for (i = 0; i < 12; i++) {
-	                _shortMonthsParse[i] = new RegExp('^' + monthsShort[i] + '$', 'i');
-	            }
-	            return _shortMonthsParse;
-	        }(monthsShort)),
-	        longMonthsParse : (function (months) {
-	            var i, _longMonthsParse = [];
-	            for (i = 0; i < 12; i++) {
-	                _longMonthsParse[i] = new RegExp('^' + months[i] + '$', 'i');
-	            }
-	            return _longMonthsParse;
-	        }(months)),
+	        monthsRegex : monthsRegex,
+	        monthsShortRegex : monthsRegex,
+	        // NOTE: 'červen' is substring of 'červenec'; therefore 'červenec' must precede 'červen' in the regex to be fully matched.
+	        // Otherwise parser matches '1. červenec' as '1. červen' + 'ec'.
+	        monthsStrictRegex : /^(leden|ledna|února|únor|březen|března|duben|dubna|květen|května|červenec|července|červen|června|srpen|srpna|září|říjen|října|listopadu|listopad|prosinec|prosince)/i,
+	        monthsShortStrictRegex : /^(led|úno|bře|dub|kvě|čvn|čvc|srp|zář|říj|lis|pro)/i,
+	        monthsParse : monthsParse,
+	        longMonthsParse : monthsParse,
+	        shortMonthsParse : monthsParse,
 	        weekdays : 'neděle_pondělí_úterý_středa_čtvrtek_pátek_sobota'.split('_'),
 	        weekdaysShort : 'ne_po_út_st_čt_pá_so'.split('_'),
 	        weekdaysMin : 'ne_po_út_st_čt_pá_so'.split('_'),
@@ -20451,7 +20552,7 @@
 	        ordinal : '%d-мӗш',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -20942,7 +21043,7 @@
 	        },
 	        week : {
 	            dow : 7,  // Sunday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -21068,6 +21169,77 @@
 	}(this, (function (moment) { 'use strict';
 	
 	
+	    var enSG = moment.defineLocale('en-SG', {
+	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
+	        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+	        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
+	        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+	        longDateFormat : {
+	            LT : 'HH:mm',
+	            LTS : 'HH:mm:ss',
+	            L : 'DD/MM/YYYY',
+	            LL : 'D MMMM YYYY',
+	            LLL : 'D MMMM YYYY HH:mm',
+	            LLLL : 'dddd, D MMMM YYYY HH:mm'
+	        },
+	        calendar : {
+	            sameDay : '[Today at] LT',
+	            nextDay : '[Tomorrow at] LT',
+	            nextWeek : 'dddd [at] LT',
+	            lastDay : '[Yesterday at] LT',
+	            lastWeek : '[Last] dddd [at] LT',
+	            sameElse : 'L'
+	        },
+	        relativeTime : {
+	            future : 'in %s',
+	            past : '%s ago',
+	            s : 'a few seconds',
+	            ss : '%d seconds',
+	            m : 'a minute',
+	            mm : '%d minutes',
+	            h : 'an hour',
+	            hh : '%d hours',
+	            d : 'a day',
+	            dd : '%d days',
+	            M : 'a month',
+	            MM : '%d months',
+	            y : 'a year',
+	            yy : '%d years'
+	        },
+	        dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+	        ordinal : function (number) {
+	            var b = number % 10,
+	                output = (~~(number % 100 / 10) === 1) ? 'th' :
+	                (b === 1) ? 'st' :
+	                (b === 2) ? 'nd' :
+	                (b === 3) ? 'rd' : 'th';
+	            return number + output;
+	        },
+	        week : {
+	            dow : 1, // Monday is the first day of the week.
+	            doy : 4  // The week that contains Jan 4th is the first week of the year.
+	        }
+	    });
+	
+	    return enSG;
+	
+	})));
+
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(197)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+	
+	
 	    var enAu = moment.defineLocale('en-au', {
 	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -21127,7 +21299,7 @@
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21194,7 +21366,7 @@
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21265,7 +21437,7 @@
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21286,7 +21458,7 @@
 	        longDateFormat : {
 	            LT : 'HH:mm',
 	            LTS : 'HH:mm:ss',
-	            L : 'DD-MM-YYYY',
+	            L : 'DD/MM/YYYY',
 	            LL : 'D MMMM YYYY',
 	            LLL : 'D MMMM YYYY HH:mm',
 	            LLLL : 'dddd D MMMM YYYY HH:mm'
@@ -21336,7 +21508,7 @@
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21402,7 +21574,7 @@
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21473,7 +21645,7 @@
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21538,7 +21710,7 @@
 	        ordinal : '%da',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -21548,7 +21720,7 @@
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21644,7 +21816,7 @@
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21740,7 +21912,7 @@
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21755,6 +21927,9 @@
 	    var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
 	        monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 	
+	    var monthsParse = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
+	    var monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
+	
 	    var esUs = moment.defineLocale('es-us', {
 	        months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
 	        monthsShort : function (m, format) {
@@ -21766,7 +21941,13 @@
 	                return monthsShortDot[m.month()];
 	            }
 	        },
-	        monthsParseExact : true,
+	        monthsRegex: monthsRegex,
+	        monthsShortRegex: monthsRegex,
+	        monthsStrictRegex: /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i,
+	        monthsShortStrictRegex: /^(ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i,
+	        monthsParse: monthsParse,
+	        longMonthsParse: monthsParse,
+	        shortMonthsParse: monthsParse,
 	        weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
 	        weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
 	        weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
@@ -21775,9 +21956,9 @@
 	            LT : 'h:mm A',
 	            LTS : 'h:mm:ss A',
 	            L : 'MM/DD/YYYY',
-	            LL : 'MMMM [de] D [de] YYYY',
-	            LLL : 'MMMM [de] D [de] YYYY h:mm A',
-	            LLLL : 'dddd, MMMM [de] D [de] YYYY h:mm A'
+	            LL : 'D [de] MMMM [de] YYYY',
+	            LLL : 'D [de] MMMM [de] YYYY h:mm A',
+	            LLLL : 'dddd, D [de] MMMM [de] YYYY h:mm A'
 	        },
 	        calendar : {
 	            sameDay : function () {
@@ -21817,7 +21998,7 @@
 	        ordinal : '%dº',
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -21827,7 +22008,7 @@
 
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21911,7 +22092,7 @@
 
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -21971,7 +22152,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -21981,7 +22162,7 @@
 
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22081,7 +22262,7 @@
 	        ordinal : '%dم',
 	        week : {
 	            dow : 6, // Saturday is the first day of the week.
-	            doy : 12 // The week that contains Jan 1st is the first week of the year.
+	            doy : 12 // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -22091,7 +22272,7 @@
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22204,7 +22385,7 @@
 
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22243,13 +22424,13 @@
 	            past : '%s síðani',
 	            s : 'fá sekund',
 	            ss : '%d sekundir',
-	            m : 'ein minutt',
+	            m : 'ein minuttur',
 	            mm : '%d minuttir',
 	            h : 'ein tími',
 	            hh : '%d tímar',
 	            d : 'ein dagur',
 	            dd : '%d dagar',
-	            M : 'ein mánaði',
+	            M : 'ein mánaður',
 	            MM : '%d mánaðir',
 	            y : 'eitt ár',
 	            yy : '%d ár'
@@ -22268,7 +22449,7 @@
 
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22355,7 +22536,7 @@
 
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22433,7 +22614,7 @@
 
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22515,7 +22696,7 @@
 
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22594,7 +22775,88 @@
 
 
 /***/ }),
-/* 245 */
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(197)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+	
+	
+	
+	    var months = [
+	        'Eanáir', 'Feabhra', 'Márta', 'Aibreán', 'Bealtaine', 'Méitheamh', 'Iúil', 'Lúnasa', 'Meán Fómhair', 'Deaireadh Fómhair', 'Samhain', 'Nollaig'
+	    ];
+	
+	    var monthsShort = ['Eaná', 'Feab', 'Márt', 'Aibr', 'Beal', 'Méit', 'Iúil', 'Lúna', 'Meán', 'Deai', 'Samh', 'Noll'];
+	
+	    var weekdays = ['Dé Domhnaigh', 'Dé Luain', 'Dé Máirt', 'Dé Céadaoin', 'Déardaoin', 'Dé hAoine', 'Dé Satharn'];
+	
+	    var weekdaysShort = ['Dom', 'Lua', 'Mái', 'Céa', 'Déa', 'hAo', 'Sat'];
+	
+	    var weekdaysMin = ['Do', 'Lu', 'Má', 'Ce', 'Dé', 'hA', 'Sa'];
+	
+	    var ga = moment.defineLocale('ga', {
+	        months: months,
+	        monthsShort: monthsShort,
+	        monthsParseExact: true,
+	        weekdays: weekdays,
+	        weekdaysShort: weekdaysShort,
+	        weekdaysMin: weekdaysMin,
+	        longDateFormat: {
+	            LT: 'HH:mm',
+	            LTS: 'HH:mm:ss',
+	            L: 'DD/MM/YYYY',
+	            LL: 'D MMMM YYYY',
+	            LLL: 'D MMMM YYYY HH:mm',
+	            LLLL: 'dddd, D MMMM YYYY HH:mm'
+	        },
+	        calendar: {
+	            sameDay: '[Inniu ag] LT',
+	            nextDay: '[Amárach ag] LT',
+	            nextWeek: 'dddd [ag] LT',
+	            lastDay: '[Inné aig] LT',
+	            lastWeek: 'dddd [seo caite] [ag] LT',
+	            sameElse: 'L'
+	        },
+	        relativeTime: {
+	            future: 'i %s',
+	            past: '%s ó shin',
+	            s: 'cúpla soicind',
+	            ss: '%d soicind',
+	            m: 'nóiméad',
+	            mm: '%d nóiméad',
+	            h: 'uair an chloig',
+	            hh: '%d uair an chloig',
+	            d: 'lá',
+	            dd: '%d lá',
+	            M: 'mí',
+	            MM: '%d mí',
+	            y: 'bliain',
+	            yy: '%d bliain'
+	        },
+	        dayOfMonthOrdinalParse: /\d{1,2}(d|na|mh)/,
+	        ordinal: function (number) {
+	            var output = number === 1 ? 'd' : number % 10 === 2 ? 'na' : 'mh';
+	            return number + output;
+	        },
+	        week: {
+	            dow: 1, // Monday is the first day of the week.
+	            doy: 4  // The week that contains Jan 4th is the first week of the year.
+	        }
+	    });
+	
+	    return ga;
+	
+	})));
+
+
+/***/ }),
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22674,7 +22936,7 @@
 
 
 /***/ }),
-/* 246 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22755,7 +23017,7 @@
 
 
 /***/ }),
-/* 247 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -22773,8 +23035,8 @@
 	            'ss': [number + ' secondanim', number + ' second'],
 	            'm': ['eka mintan', 'ek minute'],
 	            'mm': [number + ' mintanim', number + ' mintam'],
-	            'h': ['eka horan', 'ek hor'],
-	            'hh': [number + ' horanim', number + ' horam'],
+	            'h': ['eka voran', 'ek vor'],
+	            'hh': [number + ' voranim', number + ' voram'],
 	            'd': ['eka disan', 'ek dis'],
 	            'dd': [number + ' disanim', number + ' dis'],
 	            'M': ['eka mhoinean', 'ek mhoino'],
@@ -22882,7 +23144,7 @@
 
 
 /***/ }),
-/* 248 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23000,7 +23262,7 @@
 	        },
 	        week: {
 	            dow: 0, // Sunday is the first day of the week.
-	            doy: 6 // The week that contains Jan 1st is the first week of the year.
+	            doy: 6 // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -23010,7 +23272,7 @@
 
 
 /***/ }),
-/* 249 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23111,7 +23373,7 @@
 
 
 /***/ }),
-/* 250 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23229,7 +23491,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -23239,7 +23501,7 @@
 
 
 /***/ }),
-/* 251 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23387,7 +23649,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -23397,7 +23659,7 @@
 
 
 /***/ }),
-/* 252 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23511,7 +23773,7 @@
 
 
 /***/ }),
-/* 253 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23600,7 +23862,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -23610,7 +23872,7 @@
 
 
 /***/ }),
-/* 254 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23686,7 +23948,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -23696,7 +23958,7 @@
 
 
 /***/ }),
-/* 255 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23832,7 +24094,7 @@
 
 
 /***/ }),
-/* 256 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23905,7 +24167,80 @@
 
 
 /***/ }),
-/* 257 */
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(197)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+	
+	
+	    var itCh = moment.defineLocale('it-ch', {
+	        months : 'gennaio_febbraio_marzo_aprile_maggio_giugno_luglio_agosto_settembre_ottobre_novembre_dicembre'.split('_'),
+	        monthsShort : 'gen_feb_mar_apr_mag_giu_lug_ago_set_ott_nov_dic'.split('_'),
+	        weekdays : 'domenica_lunedì_martedì_mercoledì_giovedì_venerdì_sabato'.split('_'),
+	        weekdaysShort : 'dom_lun_mar_mer_gio_ven_sab'.split('_'),
+	        weekdaysMin : 'do_lu_ma_me_gi_ve_sa'.split('_'),
+	        longDateFormat : {
+	            LT : 'HH:mm',
+	            LTS : 'HH:mm:ss',
+	            L : 'DD.MM.YYYY',
+	            LL : 'D MMMM YYYY',
+	            LLL : 'D MMMM YYYY HH:mm',
+	            LLLL : 'dddd D MMMM YYYY HH:mm'
+	        },
+	        calendar : {
+	            sameDay: '[Oggi alle] LT',
+	            nextDay: '[Domani alle] LT',
+	            nextWeek: 'dddd [alle] LT',
+	            lastDay: '[Ieri alle] LT',
+	            lastWeek: function () {
+	                switch (this.day()) {
+	                    case 0:
+	                        return '[la scorsa] dddd [alle] LT';
+	                    default:
+	                        return '[lo scorso] dddd [alle] LT';
+	                }
+	            },
+	            sameElse: 'L'
+	        },
+	        relativeTime : {
+	            future : function (s) {
+	                return ((/^[0-9].+$/).test(s) ? 'tra' : 'in') + ' ' + s;
+	            },
+	            past : '%s fa',
+	            s : 'alcuni secondi',
+	            ss : '%d secondi',
+	            m : 'un minuto',
+	            mm : '%d minuti',
+	            h : 'un\'ora',
+	            hh : '%d ore',
+	            d : 'un giorno',
+	            dd : '%d giorni',
+	            M : 'un mese',
+	            MM : '%d mesi',
+	            y : 'un anno',
+	            yy : '%d anni'
+	        },
+	        dayOfMonthOrdinalParse : /\d{1,2}º/,
+	        ordinal: '%dº',
+	        week : {
+	            dow : 1, // Monday is the first day of the week.
+	            doy : 4  // The week that contains Jan 4th is the first week of the year.
+	        }
+	    });
+	
+	    return itCh;
+	
+	})));
+
+
+/***/ }),
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -23918,7 +24253,7 @@
 	
 	
 	    var ja = moment.defineLocale('ja', {
-	        months : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
+	        months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
 	        monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
 	        weekdays : '日曜日_月曜日_火曜日_水曜日_木曜日_金曜日_土曜日'.split('_'),
 	        weekdaysShort : '日_月_火_水_木_金_土'.split('_'),
@@ -24001,7 +24336,7 @@
 
 
 /***/ }),
-/* 258 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24077,7 +24412,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -24087,7 +24422,7 @@
 
 
 /***/ }),
-/* 259 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24180,7 +24515,7 @@
 
 
 /***/ }),
-/* 260 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24261,7 +24596,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -24271,7 +24606,7 @@
 
 
 /***/ }),
-/* 261 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24385,7 +24720,7 @@
 
 
 /***/ }),
-/* 262 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24505,7 +24840,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -24515,7 +24850,7 @@
 
 
 /***/ }),
-/* 263 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24600,7 +24935,130 @@
 
 
 /***/ }),
-/* 264 */
+/* 267 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	//! moment.js locale configuration
+	
+	;(function (global, factory) {
+	    true ? factory(__webpack_require__(197)) :
+	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+	   factory(global.moment)
+	}(this, (function (moment) { 'use strict';
+	
+	
+	    var symbolMap = {
+	        '1': '١',
+	        '2': '٢',
+	        '3': '٣',
+	        '4': '٤',
+	        '5': '٥',
+	        '6': '٦',
+	        '7': '٧',
+	        '8': '٨',
+	        '9': '٩',
+	        '0': '٠'
+	    }, numberMap = {
+	        '١': '1',
+	        '٢': '2',
+	        '٣': '3',
+	        '٤': '4',
+	        '٥': '5',
+	        '٦': '6',
+	        '٧': '7',
+	        '٨': '8',
+	        '٩': '9',
+	        '٠': '0'
+	    },
+	    months = [
+	        'کانونی دووەم',
+	        'شوبات',
+	        'ئازار',
+	        'نیسان',
+	        'ئایار',
+	        'حوزەیران',
+	        'تەمموز',
+	        'ئاب',
+	        'ئەیلوول',
+	        'تشرینی یەكەم',
+	        'تشرینی دووەم',
+	        'كانونی یەکەم'
+	    ];
+	
+	
+	    var ku = moment.defineLocale('ku', {
+	        months : months,
+	        monthsShort : months,
+	        weekdays : 'یه‌كشه‌ممه‌_دووشه‌ممه‌_سێشه‌ممه‌_چوارشه‌ممه‌_پێنجشه‌ممه‌_هه‌ینی_شه‌ممه‌'.split('_'),
+	        weekdaysShort : 'یه‌كشه‌م_دووشه‌م_سێشه‌م_چوارشه‌م_پێنجشه‌م_هه‌ینی_شه‌ممه‌'.split('_'),
+	        weekdaysMin : 'ی_د_س_چ_پ_ه_ش'.split('_'),
+	        weekdaysParseExact : true,
+	        longDateFormat : {
+	            LT : 'HH:mm',
+	            LTS : 'HH:mm:ss',
+	            L : 'DD/MM/YYYY',
+	            LL : 'D MMMM YYYY',
+	            LLL : 'D MMMM YYYY HH:mm',
+	            LLLL : 'dddd, D MMMM YYYY HH:mm'
+	        },
+	        meridiemParse: /ئێواره‌|به‌یانی/,
+	        isPM: function (input) {
+	            return /ئێواره‌/.test(input);
+	        },
+	        meridiem : function (hour, minute, isLower) {
+	            if (hour < 12) {
+	                return 'به‌یانی';
+	            } else {
+	                return 'ئێواره‌';
+	            }
+	        },
+	        calendar : {
+	            sameDay : '[ئه‌مرۆ كاتژمێر] LT',
+	            nextDay : '[به‌یانی كاتژمێر] LT',
+	            nextWeek : 'dddd [كاتژمێر] LT',
+	            lastDay : '[دوێنێ كاتژمێر] LT',
+	            lastWeek : 'dddd [كاتژمێر] LT',
+	            sameElse : 'L'
+	        },
+	        relativeTime : {
+	            future : 'له‌ %s',
+	            past : '%s',
+	            s : 'چه‌ند چركه‌یه‌ك',
+	            ss : 'چركه‌ %d',
+	            m : 'یه‌ك خوله‌ك',
+	            mm : '%d خوله‌ك',
+	            h : 'یه‌ك كاتژمێر',
+	            hh : '%d كاتژمێر',
+	            d : 'یه‌ك ڕۆژ',
+	            dd : '%d ڕۆژ',
+	            M : 'یه‌ك مانگ',
+	            MM : '%d مانگ',
+	            y : 'یه‌ك ساڵ',
+	            yy : '%d ساڵ'
+	        },
+	        preparse: function (string) {
+	            return string.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
+	                return numberMap[match];
+	            }).replace(/،/g, ',');
+	        },
+	        postformat: function (string) {
+	            return string.replace(/\d/g, function (match) {
+	                return symbolMap[match];
+	            }).replace(/,/g, '،');
+	        },
+	        week : {
+	            dow : 6, // Saturday is the first day of the week.
+	            doy : 12 // The week that contains Jan 12th is the first week of the year.
+	        }
+	    });
+	
+	    return ku;
+	
+	})));
+
+
+/***/ }),
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24653,8 +25111,8 @@
 	            sameDay : '[Бүгүн саат] LT',
 	            nextDay : '[Эртең саат] LT',
 	            nextWeek : 'dddd [саат] LT',
-	            lastDay : '[Кече саат] LT',
-	            lastWeek : '[Өткен аптанын] dddd [күнү] [саат] LT',
+	            lastDay : '[Кечээ саат] LT',
+	            lastWeek : '[Өткөн аптанын] dddd [күнү] [саат] LT',
 	            sameElse : 'L'
 	        },
 	        relativeTime : {
@@ -24681,7 +25139,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -24691,7 +25149,7 @@
 
 
 /***/ }),
-/* 265 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24831,7 +25289,7 @@
 
 
 /***/ }),
-/* 266 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -24905,7 +25363,7 @@
 
 
 /***/ }),
-/* 267 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25027,7 +25485,7 @@
 
 
 /***/ }),
-/* 268 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25128,7 +25586,7 @@
 
 
 /***/ }),
-/* 269 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25234,7 +25692,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -25244,7 +25702,7 @@
 
 
 /***/ }),
-/* 270 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25312,7 +25770,7 @@
 
 
 /***/ }),
-/* 271 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25396,7 +25854,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -25406,7 +25864,7 @@
 
 
 /***/ }),
-/* 272 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25491,7 +25949,7 @@
 
 
 /***/ }),
-/* 273 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25599,7 +26057,7 @@
 
 
 /***/ }),
-/* 274 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25753,7 +26211,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -25763,7 +26221,7 @@
 
 
 /***/ }),
-/* 275 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25839,7 +26297,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -25849,7 +26307,7 @@
 
 
 /***/ }),
-/* 276 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25925,7 +26383,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -25935,7 +26393,7 @@
 
 
 /***/ }),
-/* 277 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -25999,7 +26457,7 @@
 
 
 /***/ }),
-/* 278 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26086,7 +26544,7 @@
 	        },
 	        week: {
 	            dow: 1, // Monday is the first day of the week.
-	            doy: 4 // The week that contains Jan 1st is the first week of the year.
+	            doy: 4 // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
 	
@@ -26096,7 +26554,7 @@
 
 
 /***/ }),
-/* 279 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26162,7 +26620,7 @@
 
 
 /***/ }),
-/* 280 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26279,7 +26737,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -26289,7 +26747,7 @@
 
 
 /***/ }),
-/* 281 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26305,7 +26763,7 @@
 	        monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
 	
 	    var monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
-	    var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
+	    var monthsRegex = /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
 	
 	    var nl = moment.defineLocale('nl', {
 	        months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
@@ -26321,7 +26779,7 @@
 	
 	        monthsRegex: monthsRegex,
 	        monthsShortRegex: monthsRegex,
-	        monthsStrictRegex: /^(januari|februari|maart|mei|ju[nl]i|april|augustus|september|oktober|november|december)/i,
+	        monthsStrictRegex: /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december)/i,
 	        monthsShortStrictRegex: /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
 	
 	        monthsParse : monthsParse,
@@ -26380,7 +26838,7 @@
 
 
 /***/ }),
-/* 282 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26396,7 +26854,7 @@
 	        monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
 	
 	    var monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
-	    var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
+	    var monthsRegex = /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
 	
 	    var nlBe = moment.defineLocale('nl-be', {
 	        months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
@@ -26412,7 +26870,7 @@
 	
 	        monthsRegex: monthsRegex,
 	        monthsShortRegex: monthsRegex,
-	        monthsStrictRegex: /^(januari|februari|maart|mei|ju[nl]i|april|augustus|september|oktober|november|december)/i,
+	        monthsStrictRegex: /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december)/i,
 	        monthsShortStrictRegex: /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
 	
 	        monthsParse : monthsParse,
@@ -26471,7 +26929,7 @@
 
 
 /***/ }),
-/* 283 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26535,7 +26993,7 @@
 
 
 /***/ }),
-/* 284 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26573,7 +27031,7 @@
 	    };
 	
 	    var paIn = moment.defineLocale('pa-in', {
-	        // There are months name as per Nanakshahi Calender but they are not used as rigidly in modern Punjabi.
+	        // There are months name as per Nanakshahi Calendar but they are not used as rigidly in modern Punjabi.
 	        months : 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split('_'),
 	        monthsShort : 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split('_'),
 	        weekdays : 'ਐਤਵਾਰ_ਸੋਮਵਾਰ_ਮੰਗਲਵਾਰ_ਬੁਧਵਾਰ_ਵੀਰਵਾਰ_ਸ਼ੁੱਕਰਵਾਰ_ਸ਼ਨੀਚਰਵਾਰ'.split('_'),
@@ -26653,7 +27111,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -26663,7 +27121,7 @@
 
 
 /***/ }),
-/* 285 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26793,7 +27251,7 @@
 
 
 /***/ }),
-/* 286 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26806,8 +27264,8 @@
 	
 	
 	    var pt = moment.defineLocale('pt', {
-	        months : 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
-	        monthsShort : 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
+	        months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+	        monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
 	        weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
 	        weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
 	        weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
@@ -26862,7 +27320,7 @@
 
 
 /***/ }),
-/* 287 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26875,8 +27333,8 @@
 	
 	
 	    var ptBr = moment.defineLocale('pt-br', {
-	        months : 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
-	        monthsShort : 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
+	        months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+	        monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
 	        weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
 	        weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
 	        weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
@@ -26927,7 +27385,7 @@
 
 
 /***/ }),
-/* 288 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -26996,7 +27454,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -27006,7 +27464,7 @@
 
 
 /***/ }),
-/* 289 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27192,7 +27650,7 @@
 
 
 /***/ }),
-/* 290 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27294,7 +27752,7 @@
 
 
 /***/ }),
-/* 291 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27358,7 +27816,7 @@
 
 
 /***/ }),
-/* 292 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27433,7 +27891,7 @@
 
 
 /***/ }),
-/* 293 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27593,7 +28051,7 @@
 
 
 /***/ }),
-/* 294 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27618,7 +28076,7 @@
 	                } else if (number < 5) {
 	                    result += withoutSuffix || isFuture ? 'sekunde' : 'sekundah';
 	                } else {
-	                    result += withoutSuffix || isFuture ? 'sekund' : 'sekund';
+	                    result += 'sekund';
 	                }
 	                return result;
 	            case 'm':
@@ -27760,7 +28218,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -27770,7 +28228,7 @@
 
 
 /***/ }),
-/* 295 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27842,7 +28300,7 @@
 
 
 /***/ }),
-/* 296 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -27947,7 +28405,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -27957,7 +28415,7 @@
 
 
 /***/ }),
-/* 297 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28062,7 +28520,7 @@
 	        ordinal : '%d.',
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -28072,7 +28530,7 @@
 
 
 /***/ }),
-/* 298 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28164,7 +28622,7 @@
 
 
 /***/ }),
-/* 299 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28237,7 +28695,7 @@
 
 
 /***/ }),
-/* 300 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28290,7 +28748,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -28300,7 +28758,7 @@
 
 
 /***/ }),
-/* 301 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28423,7 +28881,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -28433,7 +28891,7 @@
 
 
 /***/ }),
-/* 302 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28446,8 +28904,8 @@
 	
 	
 	    var te = moment.defineLocale('te', {
-	        months : 'జనవరి_ఫిబ్రవరి_మార్చి_ఏప్రిల్_మే_జూన్_జూలై_ఆగస్టు_సెప్టెంబర్_అక్టోబర్_నవంబర్_డిసెంబర్'.split('_'),
-	        monthsShort : 'జన._ఫిబ్ర._మార్చి_ఏప్రి._మే_జూన్_జూలై_ఆగ._సెప్._అక్టో._నవ._డిసె.'.split('_'),
+	        months : 'జనవరి_ఫిబ్రవరి_మార్చి_ఏప్రిల్_మే_జూన్_జులై_ఆగస్టు_సెప్టెంబర్_అక్టోబర్_నవంబర్_డిసెంబర్'.split('_'),
+	        monthsShort : 'జన._ఫిబ్ర._మార్చి_ఏప్రి._మే_జూన్_జులై_ఆగ._సెప్._అక్టో._నవ._డిసె.'.split('_'),
 	        monthsParseExact : true,
 	        weekdays : 'ఆదివారం_సోమవారం_మంగళవారం_బుధవారం_గురువారం_శుక్రవారం_శనివారం'.split('_'),
 	        weekdaysShort : 'ఆది_సోమ_మంగళ_బుధ_గురు_శుక్ర_శని'.split('_'),
@@ -28516,7 +28974,7 @@
 	        },
 	        week : {
 	            dow : 0, // Sunday is the first day of the week.
-	            doy : 6  // The week that contains Jan 1st is the first week of the year.
+	            doy : 6  // The week that contains Jan 6th is the first week of the year.
 	        }
 	    });
 	
@@ -28526,7 +28984,7 @@
 
 
 /***/ }),
-/* 303 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28597,7 +29055,7 @@
 
 
 /***/ }),
-/* 304 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28717,7 +29175,7 @@
 
 
 /***/ }),
-/* 305 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28788,7 +29246,7 @@
 
 
 /***/ }),
-/* 306 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28854,7 +29312,7 @@
 
 
 /***/ }),
-/* 307 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -28980,7 +29438,7 @@
 
 
 /***/ }),
-/* 308 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
@@ -29068,7 +29526,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -29078,7 +29536,7 @@
 
 
 /***/ }),
-/* 309 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29173,7 +29631,7 @@
 
 
 /***/ }),
-/* 310 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29225,7 +29683,7 @@
 	        },
 	        week : {
 	            dow : 6, // Saturday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -29235,7 +29693,7 @@
 
 
 /***/ }),
-/* 311 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29287,7 +29745,7 @@
 	        },
 	        week : {
 	            dow : 6, // Saturday is the first day of the week.
-	            doy : 12  // The week that contains Jan 1st is the first week of the year.
+	            doy : 12  // The week that contains Jan 12th is the first week of the year.
 	        }
 	    });
 	
@@ -29297,7 +29755,7 @@
 
 
 /***/ }),
-/* 312 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js language configuration
@@ -29420,7 +29878,7 @@
 
 
 /***/ }),
-/* 313 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29462,6 +29920,9 @@
 	            'genitive': 'неділі_понеділка_вівторка_середи_четверга_п’ятниці_суботи'.split('_')
 	        };
 	
+	        if (m === true) {
+	            return weekdays['nominative'].slice(1, 7).concat(weekdays['nominative'].slice(0, 1));
+	        }
 	        if (!m) {
 	            return weekdays['nominative'];
 	        }
@@ -29565,7 +30026,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -29575,7 +30036,7 @@
 
 
 /***/ }),
-/* 314 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29677,7 +30138,7 @@
 
 
 /***/ }),
-/* 315 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29739,7 +30200,7 @@
 
 
 /***/ }),
-/* 316 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29791,7 +30252,7 @@
 	        },
 	        week : {
 	            dow : 1, // Monday is the first day of the week.
-	            doy : 7  // The week that contains Jan 1st is the first week of the year.
+	            doy : 7  // The week that contains Jan 7th is the first week of the year.
 	        }
 	    });
 	
@@ -29801,7 +30262,7 @@
 
 
 /***/ }),
-/* 317 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29884,7 +30345,7 @@
 
 
 /***/ }),
-/* 318 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -29956,7 +30417,7 @@
 
 
 /***/ }),
-/* 319 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -30020,7 +30481,7 @@
 
 
 /***/ }),
-/* 320 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -30134,7 +30595,7 @@
 
 
 /***/ }),
-/* 321 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -30241,7 +30702,7 @@
 
 
 /***/ }),
-/* 322 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -30348,7 +30809,7 @@
 
 
 /***/ }),
-/* 323 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30365,7 +30826,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _Select = __webpack_require__(324);
+	var _Select = __webpack_require__(328);
 	
 	var _Select2 = _interopRequireDefault(_Select);
 	
@@ -30609,7 +31070,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 324 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30793,7 +31254,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 325 */
+/* 329 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -30839,7 +31300,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 326 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30912,7 +31373,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 327 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
