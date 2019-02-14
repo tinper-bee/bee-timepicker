@@ -1,3 +1,7 @@
+/**
+* This source code is quoted from rc-time-picker.
+* homepage: https://github.com/react-component/time-picker
+*/
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
