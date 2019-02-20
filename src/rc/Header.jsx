@@ -1,11 +1,6 @@
-/**
-* This source code is quoted from rc-time-picker.
-* homepage: https://github.com/react-component/time-picker
-*/
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { KeyCode } from 'tinper-bee-core';
 
 class Header extends Component {
   static propTypes = {
@@ -23,7 +18,6 @@ class Header extends Component {
     disabledMinutes: PropTypes.func,
     disabledSeconds: PropTypes.func,
     onChange: PropTypes.func,
-    onClear: PropTypes.func,
     onEsc: PropTypes.func,
     allowEmpty: PropTypes.bool,
     defaultOpenValue: PropTypes.object,
@@ -35,24 +29,25 @@ class Header extends Component {
 
   static defaultProps = {
     inputReadOnly: false,
-  }
+  };
 
   constructor(props) {
     super(props);
     const { value, format } = props;
     this.state = {
-      str: value && value.format(format) || '',
+      str: (value && value.format(format)) || '',
       invalid: false,
     };
   }
 
   componentDidMount() {
-    if (this.props.focusOnOpen) {
+    const { focusOnOpen } = this.props;
+    if (focusOnOpen) {
       // Wait one frame for the panel to be positioned before focusing
-      const requestAnimationFrame = (window.requestAnimationFrame || window.setTimeout);
+      const requestAnimationFrame = window.requestAnimationFrame || window.setTimeout;
       requestAnimationFrame(() => {
-        this.refs.input.focus();
-        this.refs.input.select();
+        this.refInput.focus();
+        this.refInput.select();
       });
     }
   }
@@ -60,24 +55,30 @@ class Header extends Component {
   componentWillReceiveProps(nextProps) {
     const { value, format } = nextProps;
     this.setState({
-      str: value && value.format(format) || '',
+      str: (value && value.format(format)) || '',
       invalid: false,
     });
   }
 
-  onInputChange = (event) => {
+  onInputChange = event => {
     const str = event.target.value;
     this.setState({
       str,
     });
     const {
-      format, hourOptions, minuteOptions, secondOptions,
-      disabledHours, disabledMinutes,
-      disabledSeconds, onChange, allowEmpty,
+      format,
+      hourOptions,
+      minuteOptions,
+      secondOptions,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      onChange,
+      allowEmpty,
     } = this.props;
 
     if (str) {
-      const originalValue = this.props.value;
+      const { value: originalValue } = this.props;
       const value = this.getProtoValue().clone();
       const parsed = moment(str, format, true);
       if (!parsed.isValid()) {
@@ -86,7 +87,10 @@ class Header extends Component {
         });
         return;
       }
-      value.hour(parsed.hour()).minute(parsed.minute()).second(parsed.second());
+      value
+        .hour(parsed.hour())
+        .minute(parsed.minute())
+        .second(parsed.second());
 
       // if time value not allowed, response warning.
       if (
@@ -143,47 +147,20 @@ class Header extends Component {
     this.setState({
       invalid: false,
     });
-  }
+  };
 
-  onKeyDown = (e) => {
-    const { onEsc, onKeyDown,allowEmpty,onChange } = this.props;
+  onKeyDown = e => {
+    const { onEsc, onKeyDown } = this.props;
     if (e.keyCode === 27) {
       onEsc();
     }
-    if(e.keyCode === KeyCode.DELETE){//lucian Delete键清空值
-      this.setState({ str: '' });
-      if (allowEmpty) {
-        onChange(null);
-      }
-    }
 
     onKeyDown(e);
-  }
-
-  onClear = () => {
-    this.setState({ str: '' });
-    this.props.onClear();
-  }
-
-  getClearButton() {
-    const { prefixCls, allowEmpty, clearIcon } = this.props;
-    if (!allowEmpty) {
-      return null;
-    }
-    return (
-      <a
-        role="button"
-        className={`${prefixCls}-clear-btn`}
-        title={this.props.clearText}
-        onMouseDown={this.onClear}
-      >
-        {clearIcon || <i className={`${prefixCls}-clear-btn-icon`} />}
-      </a>
-    );
-  }
+  };
 
   getProtoValue() {
-    return this.props.value || this.props.defaultOpenValue;
+    const { value, defaultOpenValue } = this.props;
+    return value || defaultOpenValue;
   }
 
   getInput() {
@@ -193,7 +170,9 @@ class Header extends Component {
     return (
       <input
         className={`${prefixCls}-input  ${invalidClass}`}
-        ref="input"
+        ref={ref => {
+          this.refInput = ref;
+        }}
         onKeyDown={this.onKeyDown}
         value={str}
         placeholder={placeholder}
@@ -205,12 +184,7 @@ class Header extends Component {
 
   render() {
     const { prefixCls } = this.props;
-    return (
-      <div className={`${prefixCls}-input-wrap`}>
-        {this.getInput()}
-        {this.getClearButton()}
-      </div>
-    );
+    return <div className={`${prefixCls}-input-wrap`}>{this.getInput()}</div>;
   }
 }
 

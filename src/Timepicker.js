@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import TimePicker from './rc/index';
 import PropTypes from 'prop-types';
+import Icon from "bee-icon";
 
 const propTypes = {};
 const defaultProps = {
-    focusOnOpen:true
+    focusOnOpen:true,
+    clearIcon:<i className="uf uf-close-c-o" />
 };
 class Timepicker extends Component {
 

@@ -3530,7 +3530,7 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
   content: "\e9da"; }
 
 .uf-globe:before {
-  content: "\e666"; }
+  content: "\e9db"; }
 
 /* FormGroup */
 /*  Navlayout  */
@@ -5260,7 +5260,13 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
 /*  Navlayout  */
 .u-time-picker {
   display: inline-block;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  position: relative; }
+  .u-time-picker i.uf {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    color: #424242; }
   .u-time-picker * {
     box-sizing: border-box; }
   .u-time-picker .u-time-picker-input {
@@ -6109,7 +6115,7 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
   color: rgb(0,0,0);
   position: relative;
   min-width: 72px;
-  padding: 5px 13px;
+  padding: 4px 13px;
   display: inline-block;
   font-family: "Open Sans", "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-size: 14px;
@@ -6183,19 +6189,19 @@ input.u-button[type="submit"] {
     border-color: #adadad; }
 
 .u-button-border {
-  color: rgb(30,136,229);
+  color: rgb(0,0,0);
   border: 1px solid rgb(189,189,189);
   background: rgb(255,255,255); }
   .u-button-border:hover {
-    color: rgb(30,136,229);
+    color: rgb(0,0,0);
     background-color: rgb(238,238,238);
     border-color: rgb(189,189,189); }
   .u-button-border:active {
-    color: rgb(30,136,229);
+    color: rgb(0,0,0);
     background-color: rgb(189,189,189);
     border-color: rgb(189,189,189); }
   .u-button-border:focus:not(:active) {
-    color: rgb(30,136,229);
+    color: rgb(0,0,0);
     background-color: rgb(238,238,238);
     border-color: rgb(189,189,189); }
 
@@ -6407,8 +6413,12 @@ input.u-button[type="submit"] {
   font-size: 14px; }
 
 .u-button-xg {
-  padding: 10px 18px;
+  padding: 10.5px 18px;
   font-size: 16px; }
+
+.u-button-md {
+  padding: 4px 13px;
+  font-size: 14px; }
 
 .u-button-sm {
   padding: 3px 5px;

@@ -4,6 +4,13 @@
 .u-time-picker {
   display: inline-block;
   box-sizing: border-box;
+  position: relative;
+  i.uf{
+    position: absolute;
+    right: 0;
+    top: 4px;
+    color: #424242
+  }
   * {
     box-sizing: border-box;
   }
