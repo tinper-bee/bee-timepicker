@@ -8058,7 +8058,7 @@
 	var propTypes = {};
 	var defaultProps = {
 	    focusOnOpen: true,
-	    clearIcon: _react2['default'].createElement('i', { className: 'uf uf-close-c-o' })
+	    clearIcon: _react2['default'].createElement('i', { className: 'uf uf-close-c' })
 	};
 	
 	var Timepicker = function (_Component) {

@@ -5266,7 +5266,8 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
     position: absolute;
     right: 0;
     top: 4px;
-    color: #424242; }
+    opacity: .2;
+    cursor: pointer; }
   .u-time-picker * {
     box-sizing: border-box; }
   .u-time-picker .u-time-picker-input {

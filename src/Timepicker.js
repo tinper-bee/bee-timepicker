@@ -6,7 +6,7 @@ import Icon from "bee-icon";
 const propTypes = {};
 const defaultProps = {
     focusOnOpen:true,
-    clearIcon:<i className="uf uf-close-c-o" />
+    clearIcon:<i className="uf uf-close-c" />
 };
 class Timepicker extends Component {
 
