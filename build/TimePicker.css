@@ -2,7 +2,14 @@
 /*  Navlayout  */
 .u-time-picker {
   display: inline-block;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  position: relative; }
+  .u-time-picker i.uf {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    opacity: .2;
+    cursor: pointer; }
   .u-time-picker * {
     box-sizing: border-box; }
   .u-time-picker .u-time-picker-input {
@@ -10,15 +17,15 @@
     position: relative;
     display: inline-block;
     padding: 4px 7px;
-    height: 28px;
+    height: 32px;
     cursor: text;
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 32;
     color: #666;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #d9d9d9;
-    border-radius: 6px;
+    border: 1px solid rgb(165, 173, 186);
+    border-radius: 3px;
     transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1); }
 
 .u-time-picker-panel {
@@ -33,7 +40,7 @@
     position: relative;
     outline: none;
     list-style: none;
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
     background-color: #fff;
     border-radius: 3px;
@@ -48,12 +55,13 @@
     cursor: auto;
     line-height: 1.5;
     outline: 0;
-    border: 1px solid transparent; }
+    border: 1px solid transparent;
+    font-size: 14px; }
   .u-time-picker-panel .u-time-picker-panel-input-wrap {
     box-sizing: border-box;
     position: relative;
     padding: 6px;
-    border-bottom: 1px solid #e9e9e9; }
+    border-bottom: 1px solid #ccc; }
   .u-time-picker-panel .u-time-picker-panel-input-invalid {
     border-color: red; }
   .u-time-picker-panel .u-time-picker-panel-clear-btn {
@@ -69,7 +77,7 @@
     margin: 0; }
   .u-time-picker-panel .u-time-picker-panel-clear-btn:after {
     content: "x";
-    font-size: 12px;
+    font-size: 14px;
     color: #aaa;
     display: inline-block;
     line-height: 1;
@@ -80,7 +88,7 @@
   .u-time-picker-panel .u-time-picker-panel-select {
     float: left;
     font-size: 12px;
-    border: 1px solid #e9e9e9;
+    border: 1px solid #ccc;
     border-width: 0 1px;
     margin-left: -1px;
     box-sizing: border-box;
@@ -111,15 +119,16 @@
     line-height: 24px;
     text-align: left;
     cursor: pointer;
+    font-size: 14px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
   .u-time-picker-panel .u-time-picker-panel-select li:hover {
-    background: rgb(30,136,229, 0.1); }
+    background: rgb(225, 76, 70, 0.1); }
   .u-time-picker-panel li.u-time-picker-panel-select-option-selected {
-    background: rgb(30,136,229, 0.1);
-    color: rgb(30,136,229); }
+    background: rgb(225, 76, 70, 0.1);
+    color: rgb(225, 76, 70); }
   .u-time-picker-panel li.u-time-picker-panel-select-option-disabled {
     color: #bfbfbf; }
   .u-time-picker-panel li.u-time-picker-panel-select-option-disabled:hover {

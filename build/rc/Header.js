@@ -16,8 +16,6 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _tinperBeeCore = require('tinper-bee-core');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -51,12 +49,14 @@ var Header = function (_Component) {
   Header.prototype.componentDidMount = function componentDidMount() {
     var _this2 = this;
 
-    if (this.props.focusOnOpen) {
+    var focusOnOpen = this.props.focusOnOpen;
+
+    if (focusOnOpen) {
       // Wait one frame for the panel to be positioned before focusing
       var requestAnimationFrame = window.requestAnimationFrame || window.setTimeout;
       requestAnimationFrame(function () {
-        _this2.refs.input.focus();
-        _this2.refs.input.select();
+        _this2.refInput.focus();
+        _this2.refInput.select();
       });
     }
   };
@@ -71,32 +71,17 @@ var Header = function (_Component) {
     });
   };
 
-  Header.prototype.getClearButton = function getClearButton() {
-    var _props = this.props,
-        prefixCls = _props.prefixCls,
-        allowEmpty = _props.allowEmpty,
-        clearIcon = _props.clearIcon;
-
-    if (!allowEmpty) {
-      return null;
-    }
-    return _react2["default"].createElement(
-      'a',
-      {
-        role: 'button',
-        className: prefixCls + '-clear-btn',
-        title: this.props.clearText,
-        onMouseDown: this.onClear
-      },
-      clearIcon || _react2["default"].createElement('i', { className: prefixCls + '-clear-btn-icon' })
-    );
-  };
-
   Header.prototype.getProtoValue = function getProtoValue() {
-    return this.props.value || this.props.defaultOpenValue;
+    var _props = this.props,
+        value = _props.value,
+        defaultOpenValue = _props.defaultOpenValue;
+
+    return value || defaultOpenValue;
   };
 
   Header.prototype.getInput = function getInput() {
+    var _this3 = this;
+
     var _props2 = this.props,
         prefixCls = _props2.prefixCls,
         placeholder = _props2.placeholder,
@@ -108,7 +93,9 @@ var Header = function (_Component) {
     var invalidClass = invalid ? prefixCls + '-input-invalid' : '';
     return _react2["default"].createElement('input', {
       className: prefixCls + '-input  ' + invalidClass,
-      ref: 'input',
+      ref: function ref(_ref) {
+        _this3.refInput = _ref;
+      },
       onKeyDown: this.onKeyDown,
       value: str,
       placeholder: placeholder,
@@ -123,8 +110,7 @@ var Header = function (_Component) {
     return _react2["default"].createElement(
       'div',
       { className: prefixCls + '-input-wrap' },
-      this.getInput(),
-      this.getClearButton()
+      this.getInput()
     );
   };
 
@@ -146,7 +132,6 @@ Header.propTypes = {
   disabledMinutes: _propTypes2["default"].func,
   disabledSeconds: _propTypes2["default"].func,
   onChange: _propTypes2["default"].func,
-  onClear: _propTypes2["default"].func,
   onEsc: _propTypes2["default"].func,
   allowEmpty: _propTypes2["default"].bool,
   defaultOpenValue: _propTypes2["default"].object,
@@ -160,14 +145,14 @@ Header.defaultProps = {
 };
 
 var _initialiseProps = function _initialiseProps() {
-  var _this3 = this;
+  var _this4 = this;
 
   this.onInputChange = function (event) {
     var str = event.target.value;
-    _this3.setState({
+    _this4.setState({
       str: str
     });
-    var _props3 = _this3.props,
+    var _props3 = _this4.props,
         format = _props3.format,
         hourOptions = _props3.hourOptions,
         minuteOptions = _props3.minuteOptions,
@@ -180,11 +165,12 @@ var _initialiseProps = function _initialiseProps() {
 
 
     if (str) {
-      var originalValue = _this3.props.value;
-      var value = _this3.getProtoValue().clone();
+      var originalValue = _this4.props.value;
+
+      var value = _this4.getProtoValue().clone();
       var parsed = (0, _moment2["default"])(str, format, true);
       if (!parsed.isValid()) {
-        _this3.setState({
+        _this4.setState({
           invalid: true
         });
         return;
@@ -193,7 +179,7 @@ var _initialiseProps = function _initialiseProps() {
 
       // if time value not allowed, response warning.
       if (hourOptions.indexOf(value.hour()) < 0 || minuteOptions.indexOf(value.minute()) < 0 || secondOptions.indexOf(value.second()) < 0) {
-        _this3.setState({
+        _this4.setState({
           invalid: true
         });
         return;
@@ -204,7 +190,7 @@ var _initialiseProps = function _initialiseProps() {
       var disabledMinuteOptions = disabledMinutes(value.hour());
       var disabledSecondOptions = disabledSeconds(value.hour(), value.minute());
       if (disabledHourOptions && disabledHourOptions.indexOf(value.hour()) >= 0 || disabledMinuteOptions && disabledMinuteOptions.indexOf(value.minute()) >= 0 || disabledSecondOptions && disabledSecondOptions.indexOf(value.second()) >= 0) {
-        _this3.setState({
+        _this4.setState({
           invalid: true
         });
         return;
@@ -225,41 +211,27 @@ var _initialiseProps = function _initialiseProps() {
     } else if (allowEmpty) {
       onChange(null);
     } else {
-      _this3.setState({
+      _this4.setState({
         invalid: true
       });
       return;
     }
 
-    _this3.setState({
+    _this4.setState({
       invalid: false
     });
   };
 
   this.onKeyDown = function (e) {
-    var _props4 = _this3.props,
+    var _props4 = _this4.props,
         onEsc = _props4.onEsc,
-        onKeyDown = _props4.onKeyDown,
-        allowEmpty = _props4.allowEmpty,
-        onChange = _props4.onChange;
+        onKeyDown = _props4.onKeyDown;
 
     if (e.keyCode === 27) {
       onEsc();
     }
-    if (e.keyCode === _tinperBeeCore.KeyCode.DELETE) {
-      //lucian Delete键清空值
-      _this3.setState({ str: '' });
-      if (allowEmpty) {
-        onChange(null);
-      }
-    }
 
     onKeyDown(e);
-  };
-
-  this.onClear = function () {
-    _this3.setState({ str: '' });
-    _this3.props.onClear();
   };
 };
 

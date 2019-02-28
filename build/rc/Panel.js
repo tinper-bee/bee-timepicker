@@ -12,14 +12,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Header = require('./Header');
-
-var _Header2 = _interopRequireDefault(_Header);
-
-var _Combobox = require('./Combobox');
-
-var _Combobox2 = _interopRequireDefault(_Combobox);
-
 var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
@@ -27,6 +19,14 @@ var _moment2 = _interopRequireDefault(_moment);
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Header = require('./Header');
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Combobox = require('./Combobox');
+
+var _Combobox2 = _interopRequireDefault(_Combobox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -54,6 +54,19 @@ function generateOptions(length, disabledOptions, hideDisabledOptions) {
   return arr;
 }
 
+function toNearestValidTime(time, hourOptions, minuteOptions, secondOptions) {
+  var hour = hourOptions.slice().sort(function (a, b) {
+    return Math.abs(time.hour() - a) - Math.abs(time.hour() - b);
+  })[0];
+  var minute = minuteOptions.slice().sort(function (a, b) {
+    return Math.abs(time.minute() - a) - Math.abs(time.minute() - b);
+  })[0];
+  var second = secondOptions.slice().sort(function (a, b) {
+    return Math.abs(time.second() - a) - Math.abs(time.second() - b);
+  })[0];
+  return (0, _moment2["default"])(hour + ':' + minute + ':' + second, 'HH:mm:ss');
+}
+
 var Panel = function (_Component) {
   _inherits(Panel, _Component);
 
@@ -63,8 +76,16 @@ var Panel = function (_Component) {
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
     _this.onChange = function (newValue) {
+      var onChange = _this.props.onChange;
+
       _this.setState({ value: newValue });
-      _this.props.onChange(newValue);
+      onChange(newValue);
+    };
+
+    _this.onAmPmChange = function (ampm) {
+      var onAmPmChange = _this.props.onAmPmChange;
+
+      onAmPmChange(ampm);
     };
 
     _this.onCurrentSelectPanelChange = function (currentSelectPanel) {
@@ -94,8 +115,7 @@ var Panel = function (_Component) {
     };
 
     _this.state = {
-      value: props.value,
-      selectionRange: []
+      value: props.value
     };
     return _this;
   }
@@ -111,12 +131,17 @@ var Panel = function (_Component) {
 
   // https://github.com/ant-design/ant-design/issues/5829
   Panel.prototype.close = function close() {
-    this.props.onEsc();
+    var onEsc = this.props.onEsc;
+
+    onEsc();
   };
 
   Panel.prototype.isAM = function isAM() {
-    var value = this.state.value || this.props.defaultOpenValue;
-    return value.hour() >= 0 && value.hour() < 12;
+    var defaultOpenValue = this.props.defaultOpenValue;
+    var value = this.state.value;
+
+    var realValue = value || defaultOpenValue;
+    return realValue.hour() >= 0 && realValue.hour() < 12;
   };
 
   Panel.prototype.render = function render() {
@@ -139,7 +164,6 @@ var Panel = function (_Component) {
         onEsc = _props.onEsc,
         addon = _props.addon,
         use12Hours = _props.use12Hours,
-        onClear = _props.onClear,
         focusOnOpen = _props.focusOnOpen,
         onKeyDown = _props.onKeyDown,
         hourStep = _props.hourStep,
@@ -158,13 +182,17 @@ var Panel = function (_Component) {
     var minuteOptions = generateOptions(60, disabledMinuteOptions, hideDisabledOptions, minuteStep);
     var secondOptions = generateOptions(60, disabledSecondOptions, hideDisabledOptions, secondStep);
 
+    var validDefaultOpenValue = toNearestValidTime(defaultOpenValue, hourOptions, minuteOptions, secondOptions);
+
     return _react2["default"].createElement(
       'div',
-      { className: (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-inner', true), _defineProperty(_classNames, className, !!className), _classNames)) },
+      {
+        className: (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-inner', true), _defineProperty(_classNames, className, !!className), _classNames))
+      },
       _react2["default"].createElement(_Header2["default"], {
         clearText: clearText,
         prefixCls: prefixCls,
-        defaultOpenValue: defaultOpenValue,
+        defaultOpenValue: validDefaultOpenValue,
         value: value,
         currentSelectPanel: currentSelectPanel,
         onEsc: onEsc,
@@ -177,7 +205,6 @@ var Panel = function (_Component) {
         disabledMinutes: disabledMinutes,
         disabledSeconds: disabledSeconds,
         onChange: this.onChange,
-        onClear: onClear,
         allowEmpty: allowEmpty,
         focusOnOpen: focusOnOpen,
         onKeyDown: onKeyDown,
@@ -187,9 +214,10 @@ var Panel = function (_Component) {
       _react2["default"].createElement(_Combobox2["default"], {
         prefixCls: prefixCls,
         value: value,
-        defaultOpenValue: defaultOpenValue,
+        defaultOpenValue: validDefaultOpenValue,
         format: format,
         onChange: this.onChange,
+        onAmPmChange: this.onAmPmChange,
         showHour: showHour,
         showMinute: showMinute,
         showSecond: showSecond,
@@ -224,12 +252,12 @@ Panel.propTypes = {
   disabledSeconds: _propTypes2["default"].func,
   hideDisabledOptions: _propTypes2["default"].bool,
   onChange: _propTypes2["default"].func,
+  onAmPmChange: _propTypes2["default"].func,
   onEsc: _propTypes2["default"].func,
   allowEmpty: _propTypes2["default"].bool,
   showHour: _propTypes2["default"].bool,
   showMinute: _propTypes2["default"].bool,
   showSecond: _propTypes2["default"].bool,
-  onClear: _propTypes2["default"].func,
   use12Hours: _propTypes2["default"].bool,
   hourStep: _propTypes2["default"].number,
   minuteStep: _propTypes2["default"].number,
@@ -242,7 +270,6 @@ Panel.propTypes = {
 Panel.defaultProps = {
   prefixCls: 'rc-time-picker-panel',
   onChange: noop,
-  onClear: noop,
   disabledHours: noop,
   disabledMinutes: noop,
   disabledSeconds: noop,
@@ -250,6 +277,7 @@ Panel.defaultProps = {
   use12Hours: false,
   addon: noop,
   onKeyDown: noop,
+  onAmPmChange: noop,
   inputReadOnly: false
 };
 exports["default"] = Panel;

@@ -59,13 +59,16 @@ var Combobox = function (_Component) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           defaultOpenValue = _this$props.defaultOpenValue,
-          use12Hours = _this$props.use12Hours;
+          use12Hours = _this$props.use12Hours,
+          propValue = _this$props.value,
+          isAM = _this$props.isAM,
+          onAmPmChange = _this$props.onAmPmChange;
 
-      var value = (_this.props.value || defaultOpenValue).clone();
+      var value = (propValue || defaultOpenValue).clone();
 
       if (type === 'hour') {
         if (use12Hours) {
-          if (_this.props.isAM) {
+          if (isAM) {
             value.hour(+itemValue % 12);
           } else {
             value.hour(+itemValue % 12 + 12);
@@ -88,16 +91,21 @@ var Combobox = function (_Component) {
             }
           }
         }
+        onAmPmChange(ampm);
       } else {
         value.second(+itemValue);
       }
       onChange(value);
     }, _this.onEnterSelectPanel = function (range) {
-      _this.props.onCurrentSelectPanelChange(range);
+      var onCurrentSelectPanelChange = _this.props.onCurrentSelectPanelChange;
+
+      onCurrentSelectPanelChange(range);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   Combobox.prototype.getHourSelect = function getHourSelect(hour) {
+    var _this2 = this;
+
     var _props = this.props,
         prefixCls = _props.prefixCls,
         hourOptions = _props.hourOptions,
@@ -129,22 +137,27 @@ var Combobox = function (_Component) {
       selectedIndex: hourOptionsAdj.indexOf(hourAdj),
       type: 'hour',
       onSelect: this.onItemChange,
-      onMouseEnter: this.onEnterSelectPanel.bind(this, 'hour')
+      onMouseEnter: function onMouseEnter() {
+        return _this2.onEnterSelectPanel('hour');
+      }
     });
   };
 
   Combobox.prototype.getMinuteSelect = function getMinuteSelect(minute) {
+    var _this3 = this;
+
     var _props2 = this.props,
         prefixCls = _props2.prefixCls,
         minuteOptions = _props2.minuteOptions,
         disabledMinutes = _props2.disabledMinutes,
         defaultOpenValue = _props2.defaultOpenValue,
-        showMinute = _props2.showMinute;
+        showMinute = _props2.showMinute,
+        propValue = _props2.value;
 
     if (!showMinute) {
       return null;
     }
-    var value = this.props.value || defaultOpenValue;
+    var value = propValue || defaultOpenValue;
     var disabledOptions = disabledMinutes(value.hour());
 
     return _react2["default"].createElement(_Select2["default"], {
@@ -155,22 +168,27 @@ var Combobox = function (_Component) {
       selectedIndex: minuteOptions.indexOf(minute),
       type: 'minute',
       onSelect: this.onItemChange,
-      onMouseEnter: this.onEnterSelectPanel.bind(this, 'minute')
+      onMouseEnter: function onMouseEnter() {
+        return _this3.onEnterSelectPanel('minute');
+      }
     });
   };
 
   Combobox.prototype.getSecondSelect = function getSecondSelect(second) {
+    var _this4 = this;
+
     var _props3 = this.props,
         prefixCls = _props3.prefixCls,
         secondOptions = _props3.secondOptions,
         disabledSeconds = _props3.disabledSeconds,
         showSecond = _props3.showSecond,
-        defaultOpenValue = _props3.defaultOpenValue;
+        defaultOpenValue = _props3.defaultOpenValue,
+        propValue = _props3.value;
 
     if (!showSecond) {
       return null;
     }
-    var value = this.props.value || defaultOpenValue;
+    var value = propValue || defaultOpenValue;
     var disabledOptions = disabledSeconds(value.hour(), value.minute());
 
     return _react2["default"].createElement(_Select2["default"], {
@@ -181,15 +199,20 @@ var Combobox = function (_Component) {
       selectedIndex: secondOptions.indexOf(second),
       type: 'second',
       onSelect: this.onItemChange,
-      onMouseEnter: this.onEnterSelectPanel.bind(this, 'second')
+      onMouseEnter: function onMouseEnter() {
+        return _this4.onEnterSelectPanel('second');
+      }
     });
   };
 
   Combobox.prototype.getAMPMSelect = function getAMPMSelect() {
+    var _this5 = this;
+
     var _props4 = this.props,
         prefixCls = _props4.prefixCls,
         use12Hours = _props4.use12Hours,
-        format = _props4.format;
+        format = _props4.format,
+        isAM = _props4.isAM;
 
     if (!use12Hours) {
       return null;
@@ -202,7 +225,7 @@ var Combobox = function (_Component) {
       return { value: c };
     });
 
-    var selected = this.props.isAM ? 0 : 1;
+    var selected = isAM ? 0 : 1;
 
     return _react2["default"].createElement(_Select2["default"], {
       prefixCls: prefixCls,
@@ -210,16 +233,19 @@ var Combobox = function (_Component) {
       selectedIndex: selected,
       type: 'ampm',
       onSelect: this.onItemChange,
-      onMouseEnter: this.onEnterSelectPanel.bind(this, 'ampm')
+      onMouseEnter: function onMouseEnter() {
+        return _this5.onEnterSelectPanel('ampm');
+      }
     });
   };
 
   Combobox.prototype.render = function render() {
     var _props5 = this.props,
         prefixCls = _props5.prefixCls,
-        defaultOpenValue = _props5.defaultOpenValue;
+        defaultOpenValue = _props5.defaultOpenValue,
+        propValue = _props5.value;
 
-    var value = this.props.value || defaultOpenValue;
+    var value = propValue || defaultOpenValue;
     return _react2["default"].createElement(
       'div',
       { className: prefixCls + '-combobox' },
@@ -239,6 +265,7 @@ Combobox.propTypes = {
   prefixCls: _propTypes2["default"].string,
   value: _propTypes2["default"].object,
   onChange: _propTypes2["default"].func,
+  onAmPmChange: _propTypes2["default"].func,
   showHour: _propTypes2["default"].bool,
   showMinute: _propTypes2["default"].bool,
   showSecond: _propTypes2["default"].bool,

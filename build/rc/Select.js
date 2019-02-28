@@ -30,11 +30,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /* eslint jsx-a11y/no-noninteractive-element-to-interactive-role: 0 */
+
 
 var scrollTo = function scrollTo(element, to, duration) {
   var requestAnimationFrame = window.requestAnimationFrame || function requestAnimationFrameTimeout() {
-    return setTimeout(arguments[0], 10);
+    return setTimeout(arguments[0], 10); // eslint-disable-line
   };
   // jump to target if duration zero
   if (duration <= 0) {
@@ -45,7 +46,7 @@ var scrollTo = function scrollTo(element, to, duration) {
   var perTick = difference / duration * 10;
 
   requestAnimationFrame(function () {
-    element.scrollTop = element.scrollTop + perTick;
+    element.scrollTop += perTick;
     if (element.scrollTop === to) return;
     scrollTo(element, to, duration - 10);
   });
@@ -72,8 +73,10 @@ var Select = function (_Component) {
 
       onSelect(type, value);
     }, _this.handleMouseEnter = function (e) {
+      var onMouseEnter = _this.props.onMouseEnter;
+
       _this.setState({ active: true });
-      _this.props.onMouseEnter(e);
+      onMouseEnter(e);
     }, _this.handleMouseLeave = function () {
       _this.setState({ active: false });
     }, _this.saveList = function (node) {
@@ -87,8 +90,10 @@ var Select = function (_Component) {
   };
 
   Select.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var selectedIndex = this.props.selectedIndex;
     // smooth scroll to selected option
-    if (prevProps.selectedIndex !== this.props.selectedIndex) {
+
+    if (prevProps.selectedIndex !== selectedIndex) {
       this.scrollToSelected(120);
     }
   };
@@ -105,18 +110,12 @@ var Select = function (_Component) {
       var _classnames;
 
       var cls = (0, _classnames4["default"])((_classnames = {}, _defineProperty(_classnames, prefixCls + '-select-option-selected', selectedIndex === index), _defineProperty(_classnames, prefixCls + '-select-option-disabled', item.disabled), _classnames));
-      var onclick = null;
-      if (!item.disabled) {
-        onclick = _this2.onSelect.bind(_this2, item.value);
-      }
+      var onClick = item.disabled ? undefined : function () {
+        _this2.onSelect(item.value);
+      };
       return _react2["default"].createElement(
         'li',
-        {
-          className: cls,
-          key: index,
-          onClick: onclick,
-          disabled: item.disabled
-        },
+        { role: 'button', onClick: onClick, className: cls, key: index, disabled: item.disabled },
         item.value
       );
     });
@@ -124,12 +123,14 @@ var Select = function (_Component) {
 
   Select.prototype.scrollToSelected = function scrollToSelected(duration) {
     // move to selected item
+    var selectedIndex = this.props.selectedIndex;
+
     var select = _reactDom2["default"].findDOMNode(this);
     var list = _reactDom2["default"].findDOMNode(this.list);
     if (!list) {
       return;
     }
-    var index = this.props.selectedIndex;
+    var index = selectedIndex;
     if (index < 0) {
       index = 0;
     }
@@ -139,16 +140,15 @@ var Select = function (_Component) {
   };
 
   Select.prototype.render = function render() {
-    var _classnames2;
+    var _props2 = this.props,
+        prefixCls = _props2.prefixCls,
+        options = _props2.options;
+    var active = this.state.active;
 
-    if (this.props.options.length === 0) {
+    if (options.length === 0) {
       return null;
     }
-
-    var prefixCls = this.props.prefixCls;
-
-    var cls = (0, _classnames4["default"])((_classnames2 = {}, _defineProperty(_classnames2, prefixCls + '-select', 1), _defineProperty(_classnames2, prefixCls + '-select-active', this.state.active), _classnames2));
-
+    var cls = (0, _classnames4["default"])(prefixCls + '-select', _defineProperty({}, prefixCls + '-select-active', active));
     return _react2["default"].createElement(
       'div',
       {
