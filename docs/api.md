@@ -48,6 +48,7 @@ import 'bee-timepicker/build/TimePicker.css';
 |onOpen|打开时的回调|Function({ open })|-|
 |onClose|关闭时的回调|Function({ open })|-|
 |getPopupContainer|定义浮层的容器，默认为 body 上新建 div|Function|-|
+|showClear|是否显示清空按钮|Boolean|true|
 
 ## 注意事项
 
