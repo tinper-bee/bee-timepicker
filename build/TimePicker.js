@@ -55,6 +55,23 @@ var Timepicker = function (_Component) {
         return _this;
     }
 
+    Timepicker.prototype.componentDidMount = function componentDidMount() {
+        //判断初始值是否合法，不合法则格式化，并触发onChange回调
+        var value = this.props.value;
+        if (value) {
+            if (value.format) {
+                if (!value.isValid()) {
+                    value = (0, _moment2["default"])((0, _moment2["default"])().format('YYYY-MM-DD') + ' ' + value._i);
+                }
+            } else {
+                value = (0, _moment2["default"])((0, _moment2["default"])().format('YYYY-MM-DD') + ' ' + value);
+            }
+        } else {
+            value = null;
+        }
+        this.props.onChange && this.props.onChange(value);
+    };
+
     Timepicker.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
         if ('value' in nextProps) {
             var value = nextProps.value;
