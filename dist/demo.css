@@ -132,7 +132,6 @@
     cursor: pointer;
     font-size: 14px;
     -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
   .u-time-picker-panel .u-time-picker-panel-select li:hover {
